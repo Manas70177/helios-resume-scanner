@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Helios Resume Scanner</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --ink:#0f0f0e;--ink2:#3d3d38;--ink3:#7a7a72;
+      --paper:#faf8f3;--paper2:#f2efe7;--paper3:#e8e4d8;
+      --accent:#0f4c81;--accent2:#1a6db5;--accent-bg:#e8f0fb;
+      --green:#2d6a3f;--green-bg:#e8f5ed;--green-bd:#7ec89a;
+      --amber:#8a5a00;--amber-bg:#fff3d4;--amber-bd:#d4a017;
+      --red:#8b2020;--red-bg:#fdeaea;--red-bd:#e08080;
+      --gold:#b08430;--gold-bg:#fdf3dc;
+      --sun:#c45c00;--sun-bg:#fff4ec;--sun-bd:#f0a060;
+      --r:10px;--r-lg:16px;
+      --sh:0 2px 12px rgba(15,15,14,.08);
+      --sh-lg:0 8px 40px rgba(15,15,14,.14);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;font-size:15px;}
+    .wrap{max-width:1060px;margin:0 auto;padding:28px 16px 80px;}
+
+    /* ── HEADER ── */
+    .hdr{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:2px solid var(--paper3);margin-bottom:24px;flex-wrap:wrap;gap:10px;}
+    .logo{display:flex;align-items:center;gap:14px;}
+    .logo-ico{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,#0f4c81,#c45c00);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(196,92,0,.28);}
+    .logo h1{font-family:'DM Serif Display',serif;font-size:23px;line-height:1.1;}
+    .logo p{font-size:11px;color:var(--ink3);margin-top:2px;}
+    .hdr-pill{background:var(--sun-bg);border:1px solid var(--sun-bd);padding:5px 12px;border-radius:20px;font-size:11px;color:var(--sun);font-weight:700;}
+
+    /* ── SCREENS ── */
+    .screen{animation:fu .25s ease both;}
+    @keyframes fu{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+    /* ── SETUP SCREEN ── */
+    .setup-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+    @media(max-width:680px){.setup-cols{grid-template-columns:1fr;}}
+
+    .panel{background:#fff;border:1.5px solid var(--paper3);border-radius:var(--r-lg);padding:18px 20px;box-shadow:var(--sh);}
+    .panel.jd{border-color:var(--sun-bd);background:linear-gradient(160deg,#fff 85%,var(--sun-bg) 100%);}
+    .panel-lbl{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+    .pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+    .pill-sun{background:var(--sun-bg);color:var(--sun);border:1px solid var(--sun-bd);}
+    .pill-blue{background:var(--accent-bg);color:var(--accent);border:1px solid #b3cdf5;}
+    .pill-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
+
+    /* API banner */
+    .api-band{background:linear-gradient(135deg,#0f4c81,#1a6db5);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:18px;box-shadow:var(--sh-lg);}
+    .api-band h3{color:#fff;font-size:13px;font-weight:600;margin-bottom:2px;}
+    .api-band p{color:#a8c8f0;font-size:11px;margin-bottom:10px;}
+    .api-row{display:flex;gap:8px;flex-wrap:wrap;}
+    .api-band input{flex:1;min-width:180px;padding:8px 11px;border-radius:7px;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;font-size:12px;font-family:'DM Mono',monospace;outline:none;}
+    .api-band input::placeholder{color:rgba(255,255,255,.4);}
+    .api-band input:focus{border-color:rgba(255,255,255,.6);}
+    .api-save{padding:8px 16px;border-radius:7px;border:none;cursor:pointer;background:#fff;color:var(--accent);font-weight:700;font-size:12px;font-family:'Outfit',sans-serif;white-space:nowrap;}
+    .api-note{font-size:10px;color:rgba(255,255,255,.35);margin-top:6px;}
+    .api-note a{color:#7ab8f5;}
+    .api-err{font-size:11px;color:#ffb3b3;margin-top:5px;}
+    .api-ok{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:9px;background:var(--green-bg);border:1px solid var(--green-bd);font-size:13px;font-weight:500;color:var(--green);margin-bottom:18px;}
+    .api-ok button{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:11px;margin-left:auto;font-family:'Outfit',sans-serif;}
+
+    /* JD textarea */
+    .jd-ta{width:100%;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.75;resize:vertical;min-height:220px;border:1.5px solid var(--paper3);border-radius:8px;padding:10px 12px;outline:none;color:var(--ink2);background:rgba(255,255,255,.8);}
+    .jd-ta:focus{border-color:var(--sun-bd);box-shadow:0 0 0 3px rgba(196,92,0,.08);}
+
+    /* Candidate section */
+    .cand-section{display:flex;flex-direction:column;gap:10px;}
+
+    /* CSV toolbar */
+    .csv-bar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:9px 12px;background:var(--paper2);border:1px solid var(--paper3);border-radius:var(--r);}
+    .file-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;padding:5px 10px;border-radius:7px;cursor:pointer;border:1.5px solid var(--paper3);background:#fff;color:var(--ink);transition:all .15s;position:relative;}
+    .file-btn:hover{background:var(--paper2);}
+    .file-btn input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
+    .csv-msg{font-size:10px;font-weight:600;}
+
+    /* Upload zone */
+    .upload-zone{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;border:1.5px dashed var(--paper3);background:var(--paper2);cursor:pointer;font-size:12px;color:var(--ink2);transition:all .2s;position:relative;}
+    .upload-zone:hover{border-color:var(--accent2);background:var(--accent-bg);}
+    .upload-zone input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
+    .uz-done{border-color:var(--green-bd);background:var(--green-bg);}
+    .uz-err{border-color:var(--red-bd);background:var(--red-bg);}
+    .uz-load{opacity:.6;pointer-events:none;}
+
+    /* Name input */
+    input.name-in{width:100%;font-family:'Outfit',sans-serif;font-size:13px;color:var(--ink);border:1.5px solid var(--paper3);border-radius:8px;padding:8px 11px;outline:none;transition:border-color .2s;}
+    input.name-in:focus{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(26,109,181,.08);}
+
+    /* Resume textarea */
+    .res-ta{width:100%;font-family:'DM Mono',monospace;font-size:11.5px;line-height:1.65;resize:vertical;min-height:80px;border:1.5px solid var(--paper3);border-radius:8px;padding:8px 11px;outline:none;color:var(--ink2);}
+    .res-ta:focus{border-color:var(--accent2);}
+
+    /* Queue */
+    .queue-wrap{background:var(--paper2);border:1px solid var(--paper3);border-radius:var(--r);padding:10px 12px;}
+    .queue-title{font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+    .q-item{display:flex;align-items:center;gap:7px;padding:5px 8px;background:#fff;border:1px solid var(--paper3);border-radius:7px;margin-bottom:4px;font-size:12px;}
+    .q-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;}
+    .q-name{flex:1;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .q-tag{font-size:9px;padding:1px 5px;border-radius:8px;border:1px solid var(--paper3);background:var(--paper2);color:var(--ink3);}
+    .q-del{background:none;border:none;cursor:pointer;color:var(--ink3);font-size:15px;padding:0 2px;line-height:1;flex-shrink:0;}
+    .q-del:hover{color:var(--red);}
+
+    /* SCAN button */
+    .scan-wrap{text-align:center;margin-top:4px;}
+    .scan-btn{width:100%;padding:15px 24px;border-radius:13px;background:linear-gradient(135deg,#0f4c81 0%,#c45c00 100%);color:#fff;border:none;cursor:pointer;font-family:'DM Serif Display',serif;font-size:18px;letter-spacing:-.01em;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(15,76,129,.25),0 2px 8px rgba(196,92,0,.2);transition:all .2s;}
+    .scan-btn:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 6px 26px rgba(196,92,0,.35);}
+    .scan-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+    .scan-hint{font-size:11px;color:var(--ink3);margin-top:7px;}
+
+    /* ── SCANNING SCREEN ── */
+    .scan-screen{text-align:center;padding:60px 20px 40px;}
+    .scan-screen h2{font-family:'DM Serif Display',serif;font-size:26px;margin-bottom:6px;}
+    .scan-screen .sub{font-size:13px;color:var(--ink3);margin-bottom:28px;line-height:1.6;}
+    .prog-track{background:var(--paper3);border-radius:99px;height:10px;max-width:480px;margin:0 auto 10px;overflow:hidden;}
+    .prog-fill{height:10px;border-radius:99px;background:linear-gradient(90deg,#0f4c81,#c45c00);transition:width .5s ease;}
+    .prog-txt{font-size:12px;color:var(--ink3);}
+    .scan-name{font-size:14px;font-weight:600;color:var(--accent);margin-top:14px;min-height:22px;}
+    .scan-dots{display:flex;gap:8px;justify-content:center;margin-top:20px;}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--paper3);animation:dotPulse 1.4s ease-in-out infinite;}
+    .dot:nth-child(2){animation-delay:.2s;}
+    .dot:nth-child(3){animation-delay:.4s;}
+    @keyframes dotPulse{0%,80%,100%{transform:scale(1);background:var(--paper3);}40%{transform:scale(1.4);background:var(--accent);}}
+
+    /* ── RESULTS SCREEN ── */
+    .res-hdr-bar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+    .res-title{font-family:'DM Serif Display',serif;font-size:22px;line-height:1.1;}
+    .res-sub{font-size:11px;color:var(--ink3);margin-top:3px;}
+    .res-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+
+    /* Metrics */
+    .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px;}
+    @media(max-width:580px){.metrics{grid-template-columns:repeat(2,1fr);}}
+    .metric{background:#fff;border:1px solid var(--paper3);border-radius:var(--r);padding:11px 13px;}
+    .m-l{font-size:9px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+    .m-v{font-size:25px;font-weight:700;font-family:'DM Serif Display',serif;line-height:1;}
+
+    /* Tabs */
+    .tabs{display:flex;gap:2px;background:var(--paper2);padding:3px;border-radius:10px;margin-bottom:18px;width:fit-content;flex-wrap:wrap;}
+    .tab{padding:6px 15px;border-radius:7px;border:none;cursor:pointer;font-size:12px;font-weight:500;background:transparent;color:var(--ink3);font-family:'Outfit',sans-serif;transition:all .15s;}
+    .tab.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+
+    /* Band header */
+    .band-hdr{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:8px;margin:15px 0 6px;font-size:11px;font-weight:700;letter-spacing:.04em;}
+
+    /* Result card */
+    .rc{background:#fff;border:1px solid var(--paper3);border-radius:var(--r-lg);margin-bottom:6px;overflow:hidden;transition:box-shadow .2s;}
+    .rc:hover{box-shadow:var(--sh);}
+    .rc-top{display:flex;align-items:center;gap:8px;padding:11px 13px;cursor:pointer;}
+    .rank-circle{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;background:var(--paper2);color:var(--ink3);}
+    .rank-circle.gold{background:var(--gold-bg);color:var(--gold);}
+    .av{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+    .rc-info{flex:1;min-width:0;}
+    .rc-name{font-size:13px;font-weight:700;}
+    .rc-sum{font-size:11px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .badge-rec{padding:3px 8px;border-radius:20px;font-size:9px;font-weight:700;flex-shrink:0;white-space:nowrap;}
+    .b-s{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
+    .b-m{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd);}
+    .b-n{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd);}
+    .score-ring{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid;}
+    .sr-n{font-size:15px;font-weight:800;line-height:1;}
+    .sr-d{font-size:8px;opacity:.7;}
+    .chev{flex-shrink:0;color:var(--ink3);transition:transform .22s;}
+    .chev.open{transform:rotate(180deg);}
+    .icon-btn{background:none;border:1px solid var(--paper3);border-radius:6px;cursor:pointer;padding:3px 7px;color:var(--ink3);display:flex;align-items:center;gap:3px;font-size:10px;font-weight:600;flex-shrink:0;transition:all .15s;font-family:'Outfit',sans-serif;}
+    .icon-btn:hover{background:var(--accent-bg);color:var(--accent);border-color:var(--accent2);}
+    .rm-btn{background:none;border:1px solid var(--paper3);border-radius:6px;cursor:pointer;padding:3px 7px;color:var(--ink3);font-size:14px;line-height:1;flex-shrink:0;transition:all .15s;}
+    .rm-btn:hover{background:var(--red-bg);border-color:var(--red-bd);color:var(--red);}
+    .rc-body{padding:12px 14px;border-top:1px solid var(--paper3);background:var(--paper2);}
+    .sg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .sg-lbl{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;}
+    .tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;margin:2px 2px 2px 0;}
+
+    /* Buttons */
+    .btn{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;padding:6px 13px;border-radius:8px;cursor:pointer;border:1.5px solid var(--paper3);background:#fff;color:var(--ink);transition:all .15s;display:inline-flex;align-items:center;gap:5px;}
+    .btn:hover:not(:disabled){background:var(--paper2);}
+    .btn:disabled{opacity:.4;cursor:not-allowed;}
+    .btn-p{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .btn-p:hover:not(:disabled){background:var(--accent2);}
+
+    /* Table */
+    .tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--paper3);}
+    table{width:100%;border-collapse:collapse;font-size:11px;background:#fff;}
+    thead tr{background:var(--accent);color:#fff;}
+    th{padding:8px 10px;text-align:left;font-weight:600;font-size:10px;letter-spacing:.04em;white-space:nowrap;}
+    tbody tr{border-bottom:1px solid var(--paper3);cursor:pointer;transition:background .12s;}
+    tbody tr:hover{background:var(--accent-bg);}
+    td{padding:7px 10px;vertical-align:middle;}
+
+    /* Modal */
+    .overlay{position:fixed;inset:0;background:rgba(15,15,14,.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .15s;}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .modal{background:#fff;border-radius:var(--r-lg);width:100%;max-width:660px;max-height:87vh;display:flex;flex-direction:column;box-shadow:var(--sh-lg);animation:slideUp .2s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    .modal-hdr{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--paper3);flex-shrink:0;}
+    .modal-ttl{font-family:'DM Serif Display',serif;font-size:16px;flex:1;}
+    .modal-x{background:none;border:1px solid var(--paper3);border-radius:6px;cursor:pointer;color:var(--ink3);width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .modal-x:hover{background:var(--red-bg);color:var(--red);}
+    .m-tab-bar{display:flex;gap:2px;padding:7px 11px 0;background:var(--paper2);border-bottom:1px solid var(--paper3);}
+    .m-tab{padding:5px 11px;border-radius:6px 6px 0 0;border:1px solid transparent;border-bottom:none;cursor:pointer;font-size:11px;font-weight:600;background:transparent;color:var(--ink3);font-family:'Outfit',sans-serif;}
+    .m-tab.on{background:#fff;color:var(--ink);border-color:var(--paper3);}
+    .modal-body{overflow-y:auto;padding:15px 17px;flex:1;}
+    .resume-pre{font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;white-space:pre-wrap;word-break:break-word;background:var(--paper2);border:1px solid var(--paper3);border-radius:8px;padding:13px;}
+    .ai-box{background:var(--accent);border-radius:10px;padding:14px 16px;color:#a8c8f0;font-size:12px;line-height:1.75;}
+    .ai-box h4{color:#fff;font-family:'DM Serif Display',serif;font-size:15px;margin-bottom:9px;}
+    .spin-wrap{display:flex;align-items:center;gap:7px;color:var(--ink3);font-size:12px;padding:10px 0;}
+    .spinner{width:15px;height:15px;border:2px solid var(--paper3);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* SOP */
+    .sop-pre{font-family:'DM Mono',monospace;font-size:11px;line-height:1.85;white-space:pre-wrap;padding:16px 18px;color:var(--ink2);}
+    .info-box{background:var(--accent);color:#a8c8f0;border-radius:var(--r-lg);padding:18px 20px;margin-bottom:16px;font-size:12px;line-height:1.8;}
+    .info-box h2{font-family:'DM Serif Display',serif;color:#fff;font-size:18px;margin-bottom:10px;}
+    .info-box h3{color:#6ba8d8;font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin:10px 0 3px;}
+  </style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/mammoth@1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+/* ── EMBEDDED 80-CANDIDATE DATASET ── */
+const SAMPLE_DATASET = [{"name": "Arjun Sharma", "score": 96, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Python + SQL + Tableau", "strengths": ["Advanced SQL with CTEs and window functions", "Python (pandas, numpy, scikit-learn) expert", "5 years production Tableau dashboards + A/B testing"], "gaps": ["No Snowflake experience", "ML skills intermediate", "No dbt exposure"], "summary": "Near-perfect JD match with full technical stack and strong communication.", "text": "Arjun Sharma | Bangalore | arjun.sharma@email.com\n\nEXPERIENCE\nSenior Data Analyst - FinTech Startup (3 years)\n- Advanced SQL: CTEs, window functions on 50M row tables\n- Python (pandas, numpy, seaborn, scikit-learn) for churn modelling\n- Tableau: 15 dashboards, A/B testing (30+ experiments)\n- BigQuery, dbt, Mixpanel\n\nData Analyst - E-commerce (2 years)\n- Cohort and funnel analysis, weekly leadership presentations\n\nSKILLS: SQL (expert), Python, Tableau, Power BI, BigQuery, dbt, scikit-learn\nEDU: B.Tech CS - IIT Bombay 2018"}, {"name": "Priya Nair", "score": 94, "recommendation": "Strong Fit", "experience_years": "6 years", "top_skill": "Power BI + Snowflake + Python", "strengths": ["Power BI expert - 20 dashboards, 500+ daily users", "Snowflake DWH: query optimisation, cost governance", "A/B testing: 50+ product experiments"], "gaps": ["No Tableau (has Power BI)", "No ML beyond stats", "No Mixpanel"], "summary": "Highly experienced analyst with Power BI, Snowflake, Python and A/B testing.", "text": "Priya Nair | Hyderabad | priya.nair@email.com\n\nEXPERIENCE\nLead Data Analyst - SaaS (3 years)\n- Power BI: 20 dashboards, 500+ daily users\n- Snowflake DWH: query optimisation, data modelling\n- A/B testing: 50+ experiments\n- Python (pandas, statsmodels, seaborn)\n\nData Analyst - Retail (3 years)\n- SQL CTEs, window functions, automation pipeline\n\nSKILLS: Power BI, SQL (advanced), Python, Snowflake, A/B testing\nEDU: M.Sc Statistics - IIT Madras 2017"}, {"name": "Vikram Rao", "score": 92, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "Tableau + SQL + Python", "strengths": ["Tableau expert - 12 production dashboards", "SQL advanced on 100M row tables", "Python pandas + A/B testing"], "gaps": ["No cloud DWH", "ML minimal", "Communication examples limited"], "summary": "Strong technical analyst - Tableau + SQL + Python trifecta.", "text": "Vikram Rao | Chennai | vikram.rao@email.com\n\nEXPERIENCE\nData Analyst - Telecom (2.5 years)\n- Tableau: 12 dashboards, daily BI reporting\n- SQL expert: CTEs, window functions on 100M rows\n- Python (pandas, numpy): ETL pipelines\n\nJunior Analyst - Consulting (1.5 years)\n- A/B testing, statistical analysis, stakeholder presentations\n\nSKILLS: Tableau, SQL (advanced), Python, A/B testing, statistics\nEDU: B.Tech Statistics - NIT Trichy 2019"}, {"name": "Sneha Patel", "score": 91, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Python (full stack) + Redshift", "strengths": ["Full Python stack: pandas, numpy, scikit-learn, matplotlib", "Redshift complex SQL + data modelling", "A/B testing with statistical significance"], "gaps": ["No Tableau or Power BI", "Python viz only", "BI tool ramp needed"], "summary": "Excellent analytical depth - Python + Redshift + A/B, missing BI tool.", "text": "Sneha Patel | Pune | sneha.patel@email.com\n\nEXPERIENCE\nData Scientist/Analyst - HealthTech (3 years)\n- Python: pandas, numpy, scikit-learn, matplotlib, seaborn\n- Redshift: complex SQL, query optimisation\n- A/B testing, statistical significance\n- Weekly presentations to product leadership\n\nAnalyst - IT (2 years)\n- SQL analysis, reporting automation\n\nSKILLS: Python (expert), Redshift, SQL, A/B testing, scikit-learn\nEDU: M.Sc Data Science - BITS Pilani 2018"}, {"name": "Rahul Kumar", "score": 90, "recommendation": "Strong Fit", "experience_years": "4.5 years", "top_skill": "Tableau + Power BI + SQL", "strengths": ["Both Tableau AND Power BI at production level", "SQL expert: CTEs, window functions, recursive queries", "Board-level presentations - stakeholder communication"], "gaps": ["Python only intermediate", "No cloud warehouse", "No A/B testing"], "summary": "Dual BI tool expertise + expert SQL - strong generalist analyst.", "text": "Rahul Kumar | Delhi | rahul.k@email.com\n\nEXPERIENCE\nSenior Data Analyst - BFSI (2.5 years)\n- Tableau + Power BI: 1000+ user dashboards\n- SQL: CTEs, window functions, recursive queries\n- Board-level presentations\n\nData Analyst - Insurance (2 years)\n- SQL reporting, data validation, stakeholder workshops\n\nSKILLS: Tableau, Power BI, SQL (expert), Python (intermediate)\nEDU: B.Sc Mathematics - Delhi Univ 2019"}, {"name": "Meera Krishnan", "score": 88, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "Python + BigQuery + A/B testing", "strengths": ["Python (pandas, numpy, seaborn) + BigQuery", "Strong statistical background (M.Sc Stats)", "A/B testing: 20+ experiments"], "gaps": ["No Tableau or Power BI", "No explicit SQL CTEs", "Missing BI tool"], "summary": "Strong analyst with Python + BigQuery + stats but missing BI tool.", "text": "Meera Krishnan | Bangalore | meera.k@email.com\n\nEXPERIENCE\nProduct Analyst - EdTech (2 years)\n- Python (pandas, numpy, seaborn): product analytics\n- BigQuery + Amplitude: funnel, retention, DAU/MAU\n- A/B testing: 20+ experiments\n\nData Analyst - Consulting (2 years)\n- SQL, hypothesis testing, data storytelling\n\nSKILLS: Python, BigQuery, SQL, A/B testing, statistics\nEDU: M.Sc Statistics - ISI Kolkata 2019"}, {"name": "Anil Desai", "score": 86, "recommendation": "Strong Fit", "experience_years": "3.5 years", "top_skill": "SQL expert + Power BI", "strengths": ["Power BI expert - enterprise 2000+ users", "SQL mastery: window functions, CTEs on 80M rows", "B.Tech + MBA Analytics combination"], "gaps": ["Python only beginner", "No A/B testing", "No cloud warehouse"], "summary": "SQL + Power BI expert - Python gap is the main concern.", "text": "Anil Desai | Mumbai | anil.desai@email.com\n\nEXPERIENCE\nBI Analyst - E-commerce (2 years)\n- Power BI: enterprise dashboards, 2000+ users\n- SQL: advanced CTEs, window functions on 80M rows\n- DAX, Power Query\n\nData Analyst - Retail (1.5 years)\n- SQL, Excel, stakeholder reporting\n\nSKILLS: Power BI (expert), SQL (advanced), DAX, Excel\nEDU: B.Tech CS + MBA Analytics - NMIMS 2019"}, {"name": "Kavya Menon", "score": 85, "recommendation": "Strong Fit", "experience_years": "3 years", "top_skill": "Tableau + Python + A/B testing", "strengths": ["Tableau expert + Python (pandas, scipy, seaborn)", "A/B testing with statistical significance", "Client-facing stakeholder communication"], "gaps": ["SQL intermediate", "No cloud warehouse", "Years slightly below ideal"], "summary": "Strong analyst - Tableau + Python + A/B testing, SQL needs work.", "text": "Kavya Menon | Bangalore | kavya.m@email.com\n\nEXPERIENCE\nData Analyst - B2B SaaS (2 years)\n- Tableau: client dashboards, embedded analytics\n- Python (pandas, scipy, seaborn): statistical analysis\n- A/B testing: feature experiments, significance testing\n\nJunior Analyst - Startup (1 year)\n- SQL intermediate, Excel, data cleaning\n\nSKILLS: Tableau (expert), Python, A/B testing, SQL (intermediate)\nEDU: B.Sc Statistics - Symbiosis Pune 2020"}, {"name": "Sanjay Verma", "score": 83, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Power BI + SQL + Snowflake", "strengths": ["Power BI enterprise dashboards at scale", "Snowflake + SQL advanced - cloud analytics", "5 years experience above JD minimum"], "gaps": ["No Python", "No A/B testing", "BI-heavy, less analytical depth"], "summary": "Experienced BI analyst with cloud experience - Python is the critical gap.", "text": "Sanjay Verma | Hyderabad | sanjay.v@email.com\n\nEXPERIENCE\nSenior BI Developer - IT (3 years)\n- Power BI: enterprise dashboards, report server\n- Snowflake: data modelling, SQL optimisation\n- SQL: window functions, stored procedures\n\nData Analyst - BFSI (2 years)\n- SQL, Power BI, stakeholder communication\n\nSKILLS: Power BI (expert), Snowflake, SQL (advanced), DAX\nEDU: B.Tech IT - VIT Vellore 2018"}, {"name": "Nisha Agarwal", "score": 81, "recommendation": "Strong Fit", "experience_years": "3 years", "top_skill": "Python + Tableau + statistics", "strengths": ["Python (pandas, numpy, matplotlib) + Tableau", "M.Sc Statistics - strong academic foundation", "Presented findings to non-technical teams"], "gaps": ["SQL intermediate", "No A/B testing explicitly", "No cloud warehouse"], "summary": "Well-rounded analyst - stats + Python + Tableau, SQL needs confirmation.", "text": "Nisha Agarwal | Jaipur | nisha.a@email.com\n\nEXPERIENCE\nData Analyst - Healthcare (2 years)\n- Tableau: clinical dashboards, KPI reporting\n- Python (pandas, numpy, matplotlib): analysis\n- Statistical analysis: regression, hypothesis testing\n\nJunior Analyst - Consulting (1 year)\n- SQL intermediate, Excel, data cleaning\n\nSKILLS: Python, Tableau, statistics, SQL (intermediate), Excel\nEDU: M.Sc Statistics - Rajasthan Univ 2020"}, {"name": "Rohan Joshi", "score": 87, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "SQL + Python + Power BI", "strengths": ["SQL CTEs and window functions mastered", "Python pandas and matplotlib for automation", "Power BI dashboards for retail analytics"], "gaps": ["No Snowflake or BigQuery", "A/B testing exposure limited", "Scikit-learn beginner"], "summary": "Solid all-rounder with SQL and BI skills and growing Python depth.", "text": "Rohan Joshi | Bangalore | rohan.joshi@email.com\n\nEXPERIENCE\nData Analyst - Retail (2.5 years)\n- SQL: CTEs, window functions, optimisation\n- Power BI: dashboards for 300+ store managers\n- Python (pandas, matplotlib): automated reporting\n\nAnalyst - FMCG (1.5 years)\n- Excel, SQL, stakeholder coordination\n\nSKILLS: SQL, Power BI, Python, Excel, statistics\nEDU: B.Tech CS - BITS Pilani 2019"}, {"name": "Ananya Bose", "score": 89, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Tableau + BigQuery + Python", "strengths": ["Tableau certified with 40+ production dashboards", "BigQuery advanced SQL and data modelling", "Python scikit-learn for predictive analytics"], "gaps": ["No Snowflake", "Communication could be stronger", "No Redshift"], "summary": "Strong senior analyst with cloud BI stack and ML capabilities.", "text": "Ananya Bose | Mumbai | ananya.bose@email.com\n\nEXPERIENCE\nSenior Analyst - Insurance (3 years)\n- Tableau: 40+ dashboards, Tableau Server admin\n- BigQuery: advanced SQL, data modelling\n- Python (pandas, scikit-learn): churn prediction\n\nData Analyst - Consulting (2 years)\n- A/B testing, statistical reporting\n\nSKILLS: Tableau, BigQuery, Python, SQL, scikit-learn\nEDU: B.Tech CS - IIT Delhi 2018"}, {"name": "Karan Mehta", "score": 84, "recommendation": "Strong Fit", "experience_years": "3.5 years", "top_skill": "SQL expert + Tableau + statistics", "strengths": ["SQL window functions on 200M row datasets", "Tableau executive dashboards", "Statistics: regression, hypothesis testing"], "gaps": ["Python intermediate only", "No cloud DWH", "Limited ML exposure"], "summary": "SQL and Tableau expert with strong statistics - Python is growth area.", "text": "Karan Mehta | Pune | karan.mehta@email.com\n\nEXPERIENCE\nData Analyst - E-commerce (2 years)\n- SQL: window functions, CTEs on 200M rows\n- Tableau: executive dashboards, self-service portal\n- Statistical analysis: regression, forecasting\n\nJunior Analyst - IT (1.5 years)\n- Python (intermediate), Excel, reporting\n\nSKILLS: SQL (expert), Tableau, Python (intermediate), statistics\nEDU: M.Sc Statistics - Pune Univ 2020"}, {"name": "Divya Nair", "score": 93, "recommendation": "Strong Fit", "experience_years": "6 years", "top_skill": "Python + Redshift + Tableau", "strengths": ["6 years analytics with full Python and SQL stack", "Redshift + Tableau production combination", "Led team of 3 junior analysts"], "gaps": ["No Power BI", "No dbt", "No Mixpanel"], "summary": "Highly experienced senior analyst with team leadership and full stack.", "text": "Divya Nair | Chennai | divya.nair@email.com\n\nEXPERIENCE\nLead Analyst - HealthTech (3 years)\n- Python full stack + Redshift advanced SQL\n- Tableau: 25 production dashboards\n- A/B testing programme lead, managed 3 junior analysts\n\nData Analyst - FMCG (3 years)\n- SQL, Python, stats reporting\n\nSKILLS: Python (expert), Redshift, Tableau, SQL, A/B testing\nEDU: M.Sc Data Analytics - IIM Bangalore 2017"}, {"name": "Suresh Iyer", "score": 82, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "Power BI + SQL + Python", "strengths": ["Power BI with DAX and Power Query expertise", "SQL advanced with performance tuning", "Python pandas for ETL and automation"], "gaps": ["No A/B testing", "No cloud warehouse", "Tableau not listed"], "summary": "Strong BI analyst with Python automation skills and solid SQL.", "text": "Suresh Iyer | Delhi | suresh.iyer@email.com\n\nEXPERIENCE\nBI Developer - BFSI (2.5 years)\n- Power BI: DAX, Power Query, enterprise dashboards\n- SQL advanced: stored procedures, performance tuning\n- Python (pandas): ETL automation\n\nAnalyst - IT (1.5 years)\n- SQL, Excel, basic Python\n\nSKILLS: Power BI, SQL (advanced), Python, DAX, Excel\nEDU: B.Tech IT - NIT Calicut 2019"}, {"name": "Pooja Sharma", "score": 90, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Tableau + Python + A/B testing", "strengths": ["Tableau Server admin and dashboard expert", "Python full stack with statsmodels", "A/B testing framework lead (60+ experiments)"], "gaps": ["No Snowflake", "No dbt", "Scikit-learn only basic"], "summary": "Experienced product analyst with Tableau, Python and A/B testing expertise.", "text": "Pooja Sharma | Hyderabad | pooja.sharma@email.com\n\nEXPERIENCE\nProduct Analyst - SaaS (3 years)\n- Tableau Server admin: 30 dashboards\n- Python (pandas, statsmodels, seaborn)\n- A/B testing lead: 60+ experiments\n\nData Analyst - Startup (2 years)\n- SQL, Python, hypothesis testing\n\nSKILLS: Tableau (expert), Python, SQL, A/B testing\nEDU: B.Sc Statistics - IIT Bombay 2018"}, {"name": "Varun Pillai", "score": 86, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "SQL + Tableau + statistics", "strengths": ["SQL expert with CTE and window function mastery", "Tableau production dashboards for finance", "Strong statistics M.Sc background"], "gaps": ["Python intermediate", "No cloud DWH", "No A/B testing"], "summary": "Finance domain analyst with strong SQL and Tableau - Python is the gap.", "text": "Varun Pillai | Mumbai | varun.pillai@email.com\n\nEXPERIENCE\nFinance Analyst - Banking (2.5 years)\n- SQL expert: CTEs, window functions on banking datasets\n- Tableau: financial and regulatory reporting dashboards\n- Statistics: regression, forecasting, risk modelling\n\nJunior Analyst - Consulting (1.5 years)\n- SQL, Excel, Python (intermediate)\n\nSKILLS: SQL (expert), Tableau, Python (intermediate), statistics\nEDU: M.Sc Statistics - IGIDR Mumbai 2019"}, {"name": "Asha Menon", "score": 88, "recommendation": "Strong Fit", "experience_years": "4.5 years", "top_skill": "Python + SQL + BigQuery", "strengths": ["Python pandas and numpy expert with BigQuery", "SQL advanced with optimisation experience", "Good stakeholder communication in startup"], "gaps": ["No Tableau or Power BI", "No formal A/B testing", "Visualisation via Python only"], "summary": "Strong analyst with Python and cloud SQL - needs BI tool.", "text": "Asha Menon | Bangalore | asha.menon@email.com\n\nEXPERIENCE\nData Analyst - E-commerce Startup (3 years)\n- Python (pandas, numpy, plotly): full analytics stack\n- BigQuery: advanced SQL, pipeline management\n- CEO and product team reporting weekly\n\nAnalyst - IT (1.5 years)\n- SQL, Excel, Python basics\n\nSKILLS: Python (expert), BigQuery, SQL (advanced), plotly\nEDU: B.Tech CS - NIT Surathkal 2019"}, {"name": "Nikhil Sinha", "score": 84, "recommendation": "Strong Fit", "experience_years": "3.5 years", "top_skill": "Tableau + A/B testing + Python", "strengths": ["Tableau expert with self-service portal", "A/B testing with statistical power calculations", "Python (pandas, seaborn) analysis"], "gaps": ["SQL intermediate", "No cloud warehouse", "No ML"], "summary": "Strong product analyst with Tableau and A/B testing expertise.", "text": "Nikhil Sinha | Pune | nikhil.sinha@email.com\n\nEXPERIENCE\nProduct Analyst - EdTech (2.5 years)\n- Tableau: self-service portal for 200 users\n- A/B testing: power calculations, experiment design\n- Python (pandas, seaborn): analysis automation\n\nJunior Analyst - Startup (1 year)\n- SQL intermediate, Excel\n\nSKILLS: Tableau (expert), A/B testing, Python, SQL (intermediate)\nEDU: B.Sc CS - Symbiosis Pune 2020"}, {"name": "Lakshmi Iyer", "score": 91, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Power BI + Python + Snowflake", "strengths": ["Power BI and Snowflake cloud analytics expert", "Python (pandas, scikit-learn) for ML-adjacent work", "5 years with C-level stakeholder management"], "gaps": ["No Tableau", "A/B testing not explicit", "No dbt"], "summary": "Senior cloud analytics professional with BI, Python and ML capabilities.", "text": "Lakshmi Iyer | Delhi | lakshmi.iyer@email.com\n\nEXPERIENCE\nSenior Analyst - BFSI (3 years)\n- Power BI: enterprise reports, Snowflake backend\n- Python (pandas, scikit-learn): risk scoring models\n- SQL: Snowflake-optimised, advanced data modelling\n- Quarterly CFO presentations\n\nData Analyst - Insurance (2 years)\n- SQL, Power BI, statistical reporting\n\nSKILLS: Power BI (expert), Snowflake, Python, SQL, scikit-learn\nEDU: MBA Analytics - IIM Calcutta 2018"}, {"name": "Ravi Iyer", "score": 75, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "SQL + Power BI", "strengths": ["SQL solid intermediate-advanced", "Power BI production experience", "Good business domain knowledge"], "gaps": ["Python only basic", "No A/B testing", "No cloud warehouse"], "summary": "Good BI analyst - Python and A/B testing gaps prevent strong fit.", "text": "Ravi Iyer | Chennai | ravi.iyer2@email.com\n\nEXPERIENCE\nBI Analyst - Manufacturing (3 years)\n- Power BI: operational dashboards\n- SQL intermediate: joins, aggregations, basic CTEs\n- Excel: advanced pivot tables\n\nSKILLS: Power BI, SQL (intermediate), Excel, Python (basic)\nEDU: B.E. CS - Anna Univ 2020"}, {"name": "Deepak Singh", "score": 70, "recommendation": "Moderate Fit", "experience_years": "3.5 years", "top_skill": "SQL + Power BI basic", "strengths": ["SQL intermediate-advanced", "Operations domain knowledge", "3.5 years experience"], "gaps": ["Power BI only basic", "No Python", "No A/B testing"], "summary": "Operations analyst pivoting to data - SQL strong, analytics light.", "text": "Deepak Singh | Lucknow | deepak.singh@email.com\n\nEXPERIENCE\nOps Analyst - Logistics (3.5 years)\n- SQL: joins, window functions basic\n- Power BI basic: simple dashboards\n- Excel: advanced reporting\n\nSKILLS: SQL, Power BI (basic), Excel\nEDU: BBA - Lucknow Univ 2020"}, {"name": "Preethi Nambiar", "score": 73, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "Python + statistics", "strengths": ["Python (pandas, seaborn)", "Strong statistics background", "Academic research published"], "gaps": ["No BI tool", "SQL basic only", "No industry analytics experience"], "summary": "Academic statistician - strong foundation, lacks industry exposure.", "text": "Preethi Nambiar | Kochi | preethi.nambiar@email.com\n\nEXPERIENCE\nResearch Analyst - University (2 years)\n- Python (pandas, seaborn, scipy): research\n- R: modelling and academic publication\n- Statistics: regression, ANOVA\n\nSKILLS: Python, R, statistics, SQL (basic)\nEDU: M.Sc Statistics - Kerala Univ 2022"}, {"name": "Amit Tiwari", "score": 72, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "Tableau + SQL", "strengths": ["Tableau dashboards in production", "SQL solid", "Good stakeholder communication"], "gaps": ["Python beginner", "No A/B testing", "No cloud warehouse"], "summary": "BI analyst - Tableau strong, Python and analytics depth needed.", "text": "Amit Tiwari | Mumbai | amit.tiwari@email.com\n\nEXPERIENCE\nBI Analyst - FMCG (3 years)\n- Tableau: production dashboards\n- SQL: joins, aggregations, reporting\n- Stakeholder analytics reviews\n\nSKILLS: Tableau, SQL, Excel, Python (beginner)\nEDU: B.Sc IT - Mumbai Univ 2020"}, {"name": "Swathi Reddy", "score": 68, "recommendation": "Moderate Fit", "experience_years": "2.5 years", "top_skill": "SQL + Python basics", "strengths": ["SQL solid for reporting", "Python basics (pandas) learning", "Eager - multiple upskilling courses"], "gaps": ["Python not production-ready", "No BI tool", "No A/B testing"], "summary": "Strong SQL analyst with Python in progress - BI tool missing.", "text": "Swathi Reddy | Hyderabad | swathi.reddy@email.com\n\nEXPERIENCE\nData Analyst - IT (2.5 years)\n- SQL advanced: complex joins, stored procedures\n- Excel: advanced pivot tables\n- Python (learning): 3 courses completed\n\nSKILLS: SQL (advanced), Excel, Python (learning)\nEDU: B.Tech IT - JNTU 2021"}, {"name": "Manish Gupta", "score": 66, "recommendation": "Moderate Fit", "experience_years": "4 years", "top_skill": "Power BI + Excel", "strengths": ["Power BI experience", "4 years BFSI domain", "Stakeholder management"], "gaps": ["Python minimal", "SQL intermediate only", "No statistical depth"], "summary": "BFSI analyst with BI - limited analytics depth vs JD.", "text": "Manish Gupta | Delhi | manish.gupta@email.com\n\nEXPERIENCE\nBFSI Analyst - Banking (4 years)\n- Power BI: financial dashboards\n- SQL: basic joins and aggregations\n- Excel: advanced financial modelling\n\nSKILLS: Power BI, SQL (intermediate), Excel\nEDU: MBA Finance - Delhi Univ 2019"}, {"name": "Rohit Pillai", "score": 62, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "Tableau basic + SQL", "strengths": ["Tableau learning in progress", "SQL intermediate", "Good communication"], "gaps": ["Python beginner", "Tableau only basic", "No A/B testing"], "summary": "Developing analyst - skills still maturing for this JD.", "text": "Rohit Pillai | Kochi | rohit.pillai@email.com\n\nEXPERIENCE\nJunior Analyst - IT (2 years)\n- Tableau basic: simple dashboards\n- SQL: joins, aggregations\n- Excel: pivot tables\n\nSKILLS: Tableau (basic), SQL, Excel, Python (beginner)\nEDU: B.Sc CS - MG Univ 2022"}, {"name": "Neha Joshi", "score": 63, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "SQL + Excel", "strengths": ["SQL solid for reporting", "Excel advanced", "E-commerce domain"], "gaps": ["No Python", "No BI tool", "No A/B testing"], "summary": "E-commerce analyst - SQL and Excel strong, missing most JD tech.", "text": "Neha Joshi | Mumbai | neha.joshi@email.com\n\nEXPERIENCE\nE-commerce Analyst - Retail (3 years)\n- SQL: joins, subqueries, reporting\n- Excel: advanced pivot tables\n- Google Analytics: traffic reporting\n\nSKILLS: SQL, Excel (advanced), Google Analytics\nEDU: B.Com - Symbiosis 2021"}, {"name": "Vivek Nanda", "score": 64, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "Python (basic) + SQL", "strengths": ["SQL intermediate-advanced", "Python basics starting", "Finance domain knowledge"], "gaps": ["Python not production-ready", "No BI tool", "No A/B testing"], "summary": "Finance professional building analytics skills - not yet ready.", "text": "Vivek Nanda | Delhi | vivek.nanda@email.com\n\nEXPERIENCE\nFinance Analyst - Corporate (3 years)\n- SQL: reporting, joins, financial extraction\n- Excel: advanced financial modelling\n- Python (beginner): started learning pandas\n\nSKILLS: SQL, Excel (expert), Python (beginner)\nEDU: CA + B.Com - ICAI 2020"}, {"name": "Girish Menon", "score": 61, "recommendation": "Moderate Fit", "experience_years": "3.5 years", "top_skill": "SQL + Google Analytics", "strengths": ["SQL solid", "Google Analytics experience", "Marketing domain analytics"], "gaps": ["No Python", "No BI tool", "Marketing vs data analytics"], "summary": "Marketing analyst with SQL - domain mismatch and missing core tools.", "text": "Girish Menon | Bangalore | girish.menon@email.com\n\nEXPERIENCE\nMarketing Analyst - Agency (3.5 years)\n- Google Analytics, GA4: funnel analysis\n- SQL: intermediate reporting\n- Excel: campaign tracking\n\nSKILLS: Google Analytics, SQL, Excel\nEDU: MBA Marketing - TAPMI 2019"}, {"name": "Rohan Mehta", "score": 58, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "SQL (basic) + Excel", "strengths": ["SQL joins and aggregations", "Excel advanced", "Committed to upskilling"], "gaps": ["SQL only basic - no CTEs", "Python beginner", "No A/B testing"], "summary": "Willing learner with foundational skills but below JD requirements.", "text": "Rohan Mehta | Pune | rohan.mehta@email.com\n\nEXPERIENCE\nJunior Analyst - FinServ (2 years)\n- SQL: joins, GROUP BY, basic subqueries\n- Excel: advanced pivot tables\n- Power BI basic\n\nSKILLS: SQL (basic), Excel, Power BI (basic), Python (learning)\nEDU: B.Com - Symbiosis 2022"}, {"name": "Simran Kaur", "score": 53, "recommendation": "Moderate Fit", "experience_years": "1 year", "top_skill": "Python basics + stats", "strengths": ["Python basics (pandas)", "M.Sc Statistics foundation", "GitHub portfolio building"], "gaps": ["Only 1 year experience", "No BI tools", "Portfolio not in production"], "summary": "Recent masters grad - right academic background but needs experience.", "text": "Simran Kaur | Chandigarh | simran.kaur@email.com\n\nEXPERIENCE\nJunior Analyst (intern to fulltime) - 1 year\n- Python (pandas, matplotlib): GitHub projects\n- SQL basic: data extraction\n- Statistics from M.Sc\n\nSKILLS: Python (basics), statistics, SQL (basic)\nEDU: M.Sc Statistics - Panjab Univ 2024"}, {"name": "Tanvi Kapoor", "score": 76, "recommendation": "Moderate Fit", "experience_years": "3.5 years", "top_skill": "Python + SQL + statistics", "strengths": ["Python (pandas, matplotlib) with good statistics", "SQL intermediate-advanced", "M.Sc Applied Mathematics"], "gaps": ["No BI tool", "No A/B testing formally", "No cloud warehouse"], "summary": "Quantitatively strong analyst - missing BI tools.", "text": "Tanvi Kapoor | Pune | tanvi.kapoor@email.com\n\nEXPERIENCE\nData Analyst - Pharma (2 years)\n- Python (pandas, matplotlib, scipy): clinical data analysis\n- SQL: complex queries for research\n- Statistics: advanced modelling\n\nJunior Analyst - IT (1.5 years)\n- SQL, Excel, basic Python\n\nSKILLS: Python, SQL (intermediate), statistics, Excel\nEDU: M.Sc Applied Maths - Pune Univ 2020"}, {"name": "Shreya Mishra", "score": 77, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "SQL + statistics + Excel", "strengths": ["SQL solid with statistical analysis", "Statistics: regression, hypothesis testing", "3 years consulting experience"], "gaps": ["No Python", "No BI tool", "No A/B testing"], "summary": "Consulting analyst with SQL and statistics - missing Python and BI.", "text": "Shreya Mishra | Bangalore | shreya.mishra@email.com\n\nEXPERIENCE\nConsultant Analyst - Big 4 (3 years)\n- SQL: complex queries for client reporting\n- Statistics: regression, hypothesis testing\n- Excel: advanced financial and statistical modelling\n\nSKILLS: SQL, statistics, Excel (expert), R (basic)\nEDU: B.Sc Statistics - Delhi Univ 2021"}, {"name": "Aakash Verma", "score": 74, "recommendation": "Moderate Fit", "experience_years": "2.5 years", "top_skill": "Tableau + Python basics", "strengths": ["Tableau dashboards for marketing", "Python basics with pandas", "Good presentation skills"], "gaps": ["SQL only basic", "No A/B testing", "Python not production-ready"], "summary": "Marketing analyst with Tableau - SQL and Python need development.", "text": "Aakash Verma | Delhi | aakash.verma@email.com\n\nEXPERIENCE\nMarketing Analyst - D2C (2.5 years)\n- Tableau: marketing dashboards\n- Python basics (pandas): ad-hoc exploration\n- Google Analytics\n\nSKILLS: Tableau, Python (basics), SQL (basic), Google Analytics\nEDU: B.Com - Delhi Univ 2021"}, {"name": "Farhan Sheikh", "score": 69, "recommendation": "Moderate Fit", "experience_years": "2.5 years", "top_skill": "Power BI + SQL", "strengths": ["Power BI dashboards for sales", "SQL intermediate", "Good business communication"], "gaps": ["Python minimal", "No A/B testing", "No statistical analysis"], "summary": "Sales BI analyst with good tools but limited analytical depth.", "text": "Farhan Sheikh | Mumbai | farhan.sheikh@email.com\n\nEXPERIENCE\nSales Analyst - FMCG (2.5 years)\n- Power BI: sales dashboards, territory analysis\n- SQL: sales data extraction\n- Excel: forecasting models\n\nSKILLS: Power BI, SQL (intermediate), Excel\nEDU: BBA - SP Jain 2021"}, {"name": "Divya Krishnamurthy", "score": 71, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "Python + A/B testing", "strengths": ["Python pandas + A/B testing", "Strong statistical background", "Good analytical thinking"], "gaps": ["No BI tool", "SQL intermediate", "No cloud warehouse"], "summary": "Good analytical profile - BI tool gap is key.", "text": "Divya Krishnamurthy | Bangalore | divya.krishna@email.com\n\nEXPERIENCE\nProduct Analyst - SaaS (3 years)\n- Python (pandas, scipy): funnel and cohort analysis\n- A/B testing: experiment design and reporting\n- SQL: joins, GROUP BY, basic window functions\n\nSKILLS: Python, A/B testing, SQL (intermediate), statistics\nEDU: B.Tech CS - PES Univ 2021"}, {"name": "Sonal Jain", "score": 72, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "Tableau + Excel", "strengths": ["Tableau intermediate dashboards", "Good communication skills", "Enrolled in SQL course"], "gaps": ["SQL only basic", "No Python", "No statistical analysis"], "summary": "Communication-strong analyst with Tableau but limited technical depth.", "text": "Sonal Jain | Jaipur | sonal.jain@email.com\n\nEXPERIENCE\nBusiness Analyst - Retail (2 years)\n- Tableau: business performance dashboards\n- Excel: advanced reporting\n- Stakeholder communication\n\nSKILLS: Tableau (intermediate), Excel, SQL (basic, learning)\nEDU: MBA - Jaipur National Univ 2022"}, {"name": "Madhav Rao", "score": 67, "recommendation": "Moderate Fit", "experience_years": "4 years", "top_skill": "SQL + Excel + operations", "strengths": ["SQL solid for operations reporting", "4 years operations domain", "Strong Excel skills"], "gaps": ["No Python", "No BI tool", "Operations not data analytics"], "summary": "Operations professional with SQL - domain mismatch.", "text": "Madhav Rao | Hyderabad | madhav.rao@email.com\n\nEXPERIENCE\nOps Analyst - Logistics (4 years)\n- SQL: operations data and reporting\n- Excel: advanced process tracking\n- Operations analytics: routing, inventory\n\nSKILLS: SQL, Excel (advanced), operations domain\nEDU: B.E. Mechanical - JNTU 2019"}, {"name": "Tanmay Bose", "score": 78, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "SQL + Tableau + Python basics", "strengths": ["Tableau dashboards for ops team", "SQL solid intermediate", "Python (pandas): started 6 months ago"], "gaps": ["Python not production-ready", "No A/B testing", "No cloud warehouse"], "summary": "Growing analyst with Tableau and SQL - Python development needed.", "text": "Tanmay Bose | Kolkata | tanmay.bose@email.com\n\nEXPERIENCE\nData Analyst - Manufacturing (3 years)\n- Tableau: ops dashboards for plant management\n- SQL: complex joins, aggregations, CTEs learning\n- Python (pandas): started 6 months ago\n\nSKILLS: Tableau, SQL (intermediate), Python (beginner), Excel\nEDU: B.Tech CS - Jadavpur Univ 2021"}, {"name": "Richa Tiwari", "score": 79, "recommendation": "Moderate Fit", "experience_years": "3.5 years", "top_skill": "SQL advanced + Python + statistics", "strengths": ["SQL advanced with CTEs and optimisation", "Python (pandas, scipy) for analysis", "Statistics: hypothesis testing and regression"], "gaps": ["No BI tool", "No cloud warehouse", "No A/B testing formally"], "summary": "Quantitatively strong analyst with SQL and Python - missing BI tool.", "text": "Richa Tiwari | Lucknow | richa.tiwari@email.com\n\nEXPERIENCE\nData Analyst - Healthcare (3.5 years)\n- SQL: advanced CTEs, window functions, stored procedures\n- Python (pandas, scipy): statistical analysis\n- Statistics: regression, ANOVA, hypothesis testing\n\nSKILLS: SQL (advanced), Python, statistics, Excel\nEDU: M.Sc Statistics - Lucknow Univ 2020"}, {"name": "Preeti Saxena", "score": 59, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "Excel + HRIS", "strengths": ["HR data reporting and HRIS", "Excel proficiency", "MBA analytics electives"], "gaps": ["No SQL, Python or BI tools", "HR domain minimal technical", "No analytical depth beyond Excel"], "summary": "HR professional - significant reskilling needed.", "text": "Preeti Saxena | Delhi | preeti.saxena@email.com\n\nEXPERIENCE\nHR Analyst - Corporate (2 years)\n- HRIS (Workday): employee data\n- Excel: HR metrics, pivot tables\n- MBA analytics electives\n\nSKILLS: Excel, HRIS, basic reporting\nEDU: MBA HR - XIMB 2022"}, {"name": "Piyush Sharma", "score": 57, "recommendation": "Moderate Fit", "experience_years": "2 years", "top_skill": "SQL + Excel + Power BI basic", "strengths": ["SQL intermediate for reporting", "Excel advanced", "Power BI basics"], "gaps": ["Python beginner", "No A/B testing", "No statistics"], "summary": "Junior analyst - needs Python and analytical depth development.", "text": "Piyush Sharma | Delhi | piyush.sharma@email.com\n\nEXPERIENCE\nJunior Analyst - Retail (2 years)\n- SQL: joins, GROUP BY, subqueries\n- Excel: advanced pivot tables\n- Power BI basic: simple charts\n\nSKILLS: SQL (intermediate), Excel, Power BI (basic)\nEDU: B.Com - Delhi Univ 2022"}, {"name": "Rahul Verma", "score": 35, "recommendation": "Not Fit", "experience_years": "2.5 years (SWE)", "top_skill": "Node.js + SQL (backend)", "strengths": ["Strong SQL from backend engineering", "Python scripting", "CS fundamentals"], "gaps": ["SWE not data analyst", "No BI, stats or A/B testing", "No business analytics"], "summary": "Backend engineer - wrong role type.", "text": "Rahul Verma | Delhi | rahul.verma@email.com\n\nEXPERIENCE\nSoftware Engineer - WebDev (2.5 years)\n- Node.js, PostgreSQL, Python scripting\n- REST API development\n\nSKILLS: Node.js, PostgreSQL, Python, JavaScript\nEDU: B.Sc CS - Delhi Univ 2021"}, {"name": "Vikram Nair", "score": 22, "recommendation": "Not Fit", "experience_years": "4.5 years (Marketing)", "top_skill": "Google Analytics + Excel", "strengths": ["Google Analytics digital exposure", "Excel for campaign reporting", "Strong communication"], "gaps": ["No SQL, no Python", "Marketing vs analytics", "No statistical analysis"], "summary": "Marketing manager - zero overlap with DA requirements.", "text": "Vikram Nair | Mumbai | vikram.nair@email.com\n\nEXPERIENCE\nMarketing Manager - Agency (4.5 years)\n- Google Analytics, social media management\n- Excel: campaign tracking\n\nSKILLS: Google Analytics, Excel, SEO, social media\nEDU: MBA Marketing - SP Jain 2018"}, {"name": "Aditya Kapoor", "score": 18, "recommendation": "Not Fit", "experience_years": "3 years (Content)", "top_skill": "Content writing", "strengths": ["Strong writing and communication", "Research skills", "Basic Excel"], "gaps": ["No technical skills", "Content - no overlap", "No quantitative background"], "summary": "Content professional - no relevant technical skills.", "text": "Aditya Kapoor | Delhi | aditya.kapoor@email.com\n\nEXPERIENCE\nContent Manager - Digital Agency (3 years)\n- Content writing, SEO, social media\n- Basic Excel for content metrics\n\nSKILLS: Content, SEO, Excel (basic)\nEDU: B.A. English - Delhi Univ 2021"}, {"name": "Sunita Jain", "score": 15, "recommendation": "Not Fit", "experience_years": "5 years (Customer Service)", "top_skill": "CRM + Excel basic", "strengths": ["CRM data entry", "Customer data familiarity", "Interpersonal skills"], "gaps": ["Customer service - no analytics", "No SQL, Python or BI", "No quantitative experience"], "summary": "Customer service professional - no analytics background.", "text": "Sunita Jain | Jaipur | sunita.jain@email.com\n\nEXPERIENCE\nCustomer Service Lead - BPO (5 years)\n- CRM (Zendesk): data entry and reporting\n- Excel: basic call metrics\n\nSKILLS: CRM, Excel (basic), customer service\nEDU: B.Com - Rajasthan Univ 2019"}, {"name": "Pankaj Mishra", "score": 12, "recommendation": "Not Fit", "experience_years": "2 years (Sales)", "top_skill": "Salesforce + Excel", "strengths": ["Salesforce CRM", "Excel reporting", "Career change motivation"], "gaps": ["No SQL, Python, BI tools", "Sales - no analytics overlap", "Needs 12-18 months training"], "summary": "Sales professional - zero analytics background.", "text": "Pankaj Mishra | Patna | pankaj.mishra@email.com\n\nEXPERIENCE\nSales Executive - FMCG (2 years)\n- Salesforce: CRM and pipeline\n- Excel basic: sales tracking\n\nSKILLS: Salesforce, Excel (basic), sales\nEDU: B.Com - Patna Univ 2022"}, {"name": "Rajesh Pillai", "score": 5, "recommendation": "Not Fit", "experience_years": "Fresher", "top_skill": "None relevant", "strengths": ["Eager to learn", "B.A. completed", "Willingness"], "gaps": ["No relevant skills at all", "Arts fresher - 0% JD match", "Full 2-year reskilling needed"], "summary": "Arts fresher - completely mismatched.", "text": "Rajesh Pillai | Kochi | rajesh.pillai@email.com\n\nFRESHER\nB.A. History - Kerala Univ 2024\nWilling to learn any role.\n\nSKILLS: MS Word (basic), communication\nHOBBIES: Cricket, music"}, {"name": "Vijay Sharma", "score": 38, "recommendation": "Not Fit", "experience_years": "3 years (DevOps)", "top_skill": "AWS + Python scripting", "strengths": ["Python scripting and automation", "AWS cloud infrastructure", "Technical aptitude"], "gaps": ["DevOps not data analytics", "No BI, SQL analysis, statistics", "No business analytics"], "summary": "DevOps engineer - wrong role, no analytics track.", "text": "Vijay Sharma | Bangalore | vijay.sharma@email.com\n\nEXPERIENCE\nDevOps Engineer - IT (3 years)\n- AWS: EC2, S3, CloudWatch\n- Python: automation and CI/CD\n- Docker, Kubernetes\n\nSKILLS: AWS, Python (scripting), Docker, Linux\nEDU: B.Tech CS - VIT 2021"}, {"name": "Rajan Tiwari", "score": 33, "recommendation": "Not Fit", "experience_years": "5 years (Project Management)", "top_skill": "JIRA + Excel + PMP", "strengths": ["PMP certified", "Excel for project tracking", "Cross-functional experience"], "gaps": ["No SQL, Python or BI", "PM not analytics", "No data analysis experience"], "summary": "Project manager - wrong function, no analytics background.", "text": "Rajan Tiwari | Hyderabad | rajan.tiwari@email.com\n\nEXPERIENCE\nProject Manager - IT Consulting (5 years)\n- JIRA: sprint management\n- Excel: project plans and tracking\n- PMP Certified\n\nSKILLS: JIRA, Excel, MS Project, PMP\nEDU: MBA - ICFAI 2018"}, {"name": "Kritika Singh", "score": 42, "recommendation": "Not Fit", "experience_years": "2 years (QA)", "top_skill": "SQL basic + Excel + QA", "strengths": ["SQL basic from QA work", "Excel for defect tracking", "Attention to detail"], "gaps": ["QA not analytics", "No Python, BI, statistics", "No business analytics"], "summary": "QA analyst - wrong function, needs full analytics development.", "text": "Kritika Singh | Pune | kritika.singh@email.com\n\nEXPERIENCE\nQA Analyst - IT (2 years)\n- SQL basic: test data queries\n- Excel: defect tracking\n- Selenium, JIRA\n\nSKILLS: SQL (basic), Excel, Selenium, JIRA\nEDU: B.Tech CS - Pune Univ 2022"}, {"name": "Geeta Patel", "score": 14, "recommendation": "Not Fit", "experience_years": "3 years (Receptionist)", "top_skill": "MS Office + communication", "strengths": ["Communication skills", "MS Office", "Customer service"], "gaps": ["No technical skills", "Receptionist - no analytics", "No quantitative background"], "summary": "Receptionist - completely mismatched application.", "text": "Geeta Patel | Ahmedabad | geeta.patel@email.com\n\nEXPERIENCE\nReceptionist - Corporate (3 years)\n- MS Office: emails, scheduling\n- Excel basic: schedules\n\nSKILLS: MS Office, communication\nEDU: B.A. - Gujarat Univ 2021"}, {"name": "Shyam Sundar", "score": 30, "recommendation": "Not Fit", "experience_years": "3 years (Finance Ops)", "top_skill": "Excel + finance domain", "strengths": ["Excel for finance ops", "Finance domain knowledge", "Corporate experience"], "gaps": ["No SQL, Python or BI", "Finance ops not analytics", "No statistical skills"], "summary": "Finance ops professional - needs complete reskilling.", "text": "Shyam Sundar | Delhi | shyam.sundar@email.com\n\nEXPERIENCE\nFinance Ops - Corporate (3 years)\n- Excel: accounts payable/receivable\n- SAP FI: financial transactions\n- MIS basic reports\n\nSKILLS: Excel (advanced), SAP FI, finance domain\nEDU: B.Com - Delhi Univ 2021"}, {"name": "Madhuri Shetty", "score": 23, "recommendation": "Not Fit", "experience_years": "4 years (Journalism)", "top_skill": "Research + writing", "strengths": ["Research and analytical writing", "Data journalism basics", "Storytelling skills"], "gaps": ["No SQL, Python or BI", "Journalism not analytics", "No quantitative skills"], "summary": "Journalist - no technical analytics skills.", "text": "Madhuri Shetty | Mumbai | madhuri.shetty@email.com\n\nEXPERIENCE\nJournalist - News Agency (4 years)\n- Data journalism: basic charts\n- Research: government data\n- Writing: analytical pieces\n\nSKILLS: Research, writing, communication\nEDU: B.A. Journalism - Manipal 2019"}, {"name": "Meena Sharma", "score": 28, "recommendation": "Not Fit", "experience_years": "3 years (Teacher)", "top_skill": "MS Office + teaching", "strengths": ["Communication skills", "Excel for grade tracking", "Organised and methodical"], "gaps": ["No SQL, Python or BI", "Education - no analytics", "No quantitative skills"], "summary": "Teacher seeking career change - complete reskilling needed.", "text": "Meena Sharma | Jaipur | meena.sharma@email.com\n\nEXPERIENCE\nHigh School Teacher - CBSE (3 years)\n- Maths and science teacher\n- Excel: grade tracking\n\nSKILLS: Teaching, Excel (basic), MS Office\nEDU: B.Ed - Rajasthan Univ 2021"}, {"name": "Harish Kumar", "score": 47, "recommendation": "Not Fit", "experience_years": "2 years (Data Entry)", "top_skill": "Excel + SQL basic", "strengths": ["Excel advanced for data ops", "SQL basic for extraction", "High accuracy data processing"], "gaps": ["Data entry not analytics", "No Python, BI, statistics", "Operational role only"], "summary": "Data entry specialist - no analytics work in current role.", "text": "Harish Kumar | Noida | harish.kumar@email.com\n\nEXPERIENCE\nData Entry Specialist - BPO (2 years)\n- Excel: data entry, cleaning\n- SQL basic: extraction queries\n- High-volume data processing\n\nSKILLS: Excel (advanced), SQL (basic), data entry\nEDU: B.Sc CS - Noida Univ 2022"}, {"name": "Kiran Bhat", "score": 40, "recommendation": "Not Fit", "experience_years": "2 years (Support)", "top_skill": "SQL basic + CRM", "strengths": ["SQL basic from support work", "CRM data management", "Technical customer exposure"], "gaps": ["Support not analytics", "No Python, BI, statistics", "No analytical modelling"], "summary": "Support analyst - wrong track for data analyst role.", "text": "Kiran Bhat | Bangalore | kiran.bhat@email.com\n\nEXPERIENCE\nSupport Analyst - SaaS (2 years)\n- SQL basic: ticket data queries\n- Salesforce: customer data\n- Excel: support metrics\n\nSKILLS: SQL (basic), Salesforce, Excel\nEDU: B.Sc CS - Bangalore Univ 2022"}, {"name": "Sameer Shah", "score": 21, "recommendation": "Not Fit", "experience_years": "4 years (Warehouse)", "top_skill": "WMS + Excel", "strengths": ["Warehouse ops expertise", "Excel inventory reporting", "WMS proficiency"], "gaps": ["No analytics skills at all", "Warehouse ops not analytics", "No SQL, Python or BI"], "summary": "Warehouse professional - completely mismatched.", "text": "Sameer Shah | Surat | sameer.shah@email.com\n\nEXPERIENCE\nWarehouse Supervisor - E-commerce (4 years)\n- WMS: warehouse management\n- Excel: inventory tracking\n- Team management: 20 staff\n\nSKILLS: WMS, Excel (basic), inventory management\nEDU: B.Com - Gujarat Univ 2019"}, {"name": "Raj Malhotra", "score": 29, "recommendation": "Not Fit", "experience_years": "5 years (Retail Manager)", "top_skill": "Excel + retail domain", "strengths": ["Retail management experience", "Excel for sales tracking", "POS analytics experience"], "gaps": ["No SQL, Python or BI", "Retail management not analytics", "No statistical skills"], "summary": "Retail manager - operational role, no analytics track.", "text": "Raj Malhotra | Chandigarh | raj.malhotra@email.com\n\nEXPERIENCE\nRetail Store Manager - Chain (5 years)\n- Excel: inventory and sales reporting\n- POS: sales data extraction\n- Team management: 15 people\n\nSKILLS: Excel, POS, retail domain\nEDU: BBA - Chandigarh Univ 2018"}, {"name": "Amitkumar Pandey", "score": 37, "recommendation": "Not Fit", "experience_years": "3 years (BPO)", "top_skill": "Excel + CRM + basic reporting", "strengths": ["3 years BPO reporting", "Excel for ops metrics", "CRM experience"], "gaps": ["BPO ops not analytics", "No SQL depth, BI, Python", "No statistical skills"], "summary": "BPO analyst - significant gap from data analyst requirements.", "text": "Amitkumar Pandey | Bhopal | amit.pandey@email.com\n\nEXPERIENCE\nBPO Ops Analyst - Call Centre (3 years)\n- Excel: daily reporting and KPIs\n- CRM (Freshdesk): customer data\n- SQL basic: SELECT queries only\n\nSKILLS: Excel, CRM, SQL (very basic)\nEDU: B.Com - Bhopal Univ 2021"}, {"name": "Nandini Verma", "score": 87, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "SQL + Tableau + Python + A/B testing", "strengths": ["SQL expert with Snowflake DWH", "Tableau production + Python analytics", "A/B testing: 35+ experiments with rigorous methodology"], "gaps": ["No ML experience", "No dbt", "Power BI not used"], "summary": "Well-rounded analyst with SQL, Tableau, Python and A/B testing.", "text": "Nandini Verma | Bangalore | nandini.verma@email.com\n\nEXPERIENCE\nData Analyst - E-commerce (4 years)\n- SQL: Snowflake, CTEs, window functions, query tuning\n- Tableau: production dashboards for product and ops\n- Python (pandas, scipy): ad-hoc analysis and automation\n- A/B testing: 35+ experiments with statistical methodology\n\nSKILLS: SQL (expert), Tableau, Python, Snowflake, A/B testing\nEDU: B.Tech CS - NIT Warangal 2019"}, {"name": "Priti Malhotra", "score": 83, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "Python + Power BI + SQL", "strengths": ["Python full analytics stack with statsmodels", "Power BI expert with 15 production reports", "A/B testing: 25+ experiments"], "gaps": ["No Snowflake or BigQuery", "Tableau not used", "No ML beyond stats"], "summary": "Strong product analyst with Python, Power BI and A/B testing.", "text": "Priti Malhotra | Delhi | priti.malhotra@email.com\n\nEXPERIENCE\nProduct Analyst - Fintech (4 years)\n- Python (pandas, statsmodels, seaborn): analysis\n- Power BI: 15 production dashboards\n- A/B testing: 25+ experiments\n- SQL: CTEs, window functions\n\nSKILLS: Python, Power BI (expert), SQL (advanced), A/B testing\nEDU: B.Sc Mathematics - IIT Kanpur 2019"}, {"name": "Zara Khan", "score": 85, "recommendation": "Strong Fit", "experience_years": "3.5 years", "top_skill": "Python + BigQuery + Tableau", "strengths": ["Python (pandas, scikit-learn) for ML-adjacent analytics", "BigQuery SQL expert with data modelling", "Tableau dashboards + strong stakeholder communication"], "gaps": ["No Snowflake or Redshift", "A/B testing limited", "Power BI not used"], "summary": "Strong analyst with Python, BigQuery and Tableau.", "text": "Zara Khan | Hyderabad | zara.khan@email.com\n\nEXPERIENCE\nData Analyst - EdTech (3.5 years)\n- Python (pandas, scikit-learn, seaborn): analytics and modelling\n- BigQuery: expert SQL, data modelling\n- Tableau: 18 production dashboards\n- Weekly VP Product reviews\n\nSKILLS: Python, BigQuery, Tableau, SQL (expert), scikit-learn\nEDU: B.Tech CS - IIIT Hyderabad 2020"}, {"name": "Sundar Krishnamoorthy", "score": 80, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "SQL + Power BI + Python", "strengths": ["SQL advanced with complex analytics", "Power BI dashboards for ops and finance", "Python (pandas, matplotlib) for reporting"], "gaps": ["No A/B testing", "No cloud warehouse", "Limited ML exposure"], "summary": "Solid analyst with SQL, Power BI and Python - good overall fit.", "text": "Sundar Krishnamoorthy | Coimbatore | sundar.k@email.com\n\nEXPERIENCE\nData Analyst - Manufacturing (4 years)\n- SQL advanced: CTEs, window functions, complex reporting\n- Power BI: ops and finance dashboards\n- Python (pandas, matplotlib): automated reports\n\nSKILLS: SQL (advanced), Power BI, Python, Excel\nEDU: B.E. CS - Coimbatore IT 2019"}, {"name": "Radhika Bhatt", "score": 76, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "Tableau + SQL + Python basics", "strengths": ["Tableau intermediate dashboards", "SQL solid for BFSI reporting", "Python basics learning"], "gaps": ["Python not production-ready", "No A/B testing", "No cloud DWH"], "summary": "BFSI analyst with Tableau and SQL - Python development underway.", "text": "Radhika Bhatt | Ahmedabad | radhika.bhatt@email.com\n\nEXPERIENCE\nData Analyst - BFSI (3 years)\n- Tableau: financial dashboards and KPI reports\n- SQL: complex joins and aggregations\n- Python: learning (pandas basics)\n\nSKILLS: Tableau, SQL, Python (beginner), Excel\nEDU: B.Sc CS - Gujarat Univ 2021"}, {"name": "Omkar Patil", "score": 69, "recommendation": "Moderate Fit", "experience_years": "2.5 years", "top_skill": "SQL + Excel + Tableau basic", "strengths": ["SQL solid for operations", "Tableau basic dashboards", "Excel advanced"], "gaps": ["No Python", "Tableau only basic", "No statistical analysis"], "summary": "Operational analyst - SQL strong but missing Python and BI depth.", "text": "Omkar Patil | Nashik | omkar.patil@email.com\n\nEXPERIENCE\nOperations Analyst - Manufacturing (2.5 years)\n- SQL: operations and inventory reporting\n- Tableau basic: 3 basic dashboards built\n- Excel: advanced reporting and MIS\n\nSKILLS: SQL, Excel (advanced), Tableau (basic)\nEDU: B.E. Mechanical - Pune Univ 2021"}, {"name": "Siddharth Jain", "score": 86, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "SQL + Tableau + A/B testing", "strengths": ["SQL expert with BigQuery experience", "Tableau production dashboards", "A/B testing: 20+ experiments with rigour"], "gaps": ["Python intermediate", "No Snowflake", "No ML"], "summary": "Strong analyst with SQL, Tableau and A/B testing experience.", "text": "Siddharth Jain | Pune | siddharth.jain@email.com\n\nEXPERIENCE\nData Analyst - SaaS (4 years)\n- SQL: BigQuery, CTEs, window functions, complex reporting\n- Tableau: 20+ production dashboards\n- A/B testing: 20+ experiments with significance testing\n- Python: intermediate analysis\n\nSKILLS: SQL (expert), BigQuery, Tableau, A/B testing, Python\nEDU: B.Tech CS - COEP Pune 2019"}, {"name": "Aditi Kulkarni", "score": 74, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "Python + statistics + SQL", "strengths": ["Python (pandas, scipy) for analysis", "Strong statistics background", "SQL intermediate for data extraction"], "gaps": ["No BI tool", "No A/B testing formally", "No cloud warehouse"], "summary": "Statistical analyst with Python - BI tool gap is the main concern.", "text": "Aditi Kulkarni | Nagpur | aditi.kulkarni@email.com\n\nEXPERIENCE\nData Analyst - Pharma (3 years)\n- Python (pandas, scipy): clinical data analysis\n- Statistics: regression, ANOVA, clinical trials\n- SQL: data extraction and reporting\n\nSKILLS: Python, statistics, SQL (intermediate), Excel\nEDU: M.Sc Statistics - Nagpur Univ 2021"}, {"name": "Prateek Gupta", "score": 45, "recommendation": "Not Fit", "experience_years": "3 years (HR)", "top_skill": "HRIS + Excel + recruitment", "strengths": ["HRIS system expertise", "Excel for HR metrics", "Recruitment data management"], "gaps": ["HR operations not analytics", "No SQL, Python or BI tools", "No quantitative analysis"], "summary": "HR operations professional - complete reskilling needed for analytics.", "text": "Prateek Gupta | Chandigarh | prateek.gupta@email.com\n\nEXPERIENCE\nHR Executive - IT Company (3 years)\n- HRIS: employee data management\n- Excel: recruitment tracking\n- Payroll and compliance reporting\n\nSKILLS: HRIS, Excel, recruitment systems\nEDU: MBA HR - Panjab Univ 2021"}, {"name": "Bhavna Shah", "score": 77, "recommendation": "Moderate Fit", "experience_years": "3.5 years", "top_skill": "SQL + Power BI + statistics", "strengths": ["SQL advanced with optimisation", "Power BI intermediate dashboards", "Statistics background from M.Sc"], "gaps": ["No Python", "No A/B testing", "No cloud warehouse"], "summary": "Analyst with SQL and BI skills - Python is the missing piece.", "text": "Bhavna Shah | Surat | bhavna.shah@email.com\n\nEXPERIENCE\nData Analyst - FMCG (3.5 years)\n- SQL: advanced queries, window functions, optimisation\n- Power BI: intermediate dashboards for sales and ops\n- Statistics: regression, hypothesis testing\n\nSKILLS: SQL (advanced), Power BI, statistics, Excel\nEDU: M.Sc Applied Maths - Gujarat Univ 2020"}, {"name": "Suraj Pandey", "score": 32, "recommendation": "Not Fit", "experience_years": "2 years (Field Sales)", "top_skill": "Salesforce + Excel", "strengths": ["Salesforce CRM field experience", "Excel for territory reports", "Strong customer relationship skills"], "gaps": ["No SQL, Python or BI tools", "Field sales not analytics", "No quantitative or data skills"], "summary": "Field sales professional - no analytics background for this role.", "text": "Suraj Pandey | Varanasi | suraj.pandey@email.com\n\nEXPERIENCE\nSales Executive - Pharma (2 years)\n- Salesforce: field sales CRM\n- Excel: territory performance\n- Customer relationship management\n\nSKILLS: Salesforce, Excel (basic), customer relationships\nEDU: B.Pharma - BHU 2022"}, {"name": "Kaveri Rajan", "score": 82, "recommendation": "Strong Fit", "experience_years": "4 years", "top_skill": "Python + Tableau + statistics", "strengths": ["Python full analytics stack", "Tableau production dashboards", "Statistics and A/B testing from product role"], "gaps": ["SQL intermediate", "No cloud DWH", "No ML experience"], "summary": "Product analyst with Python, Tableau and statistics - SQL needs work.", "text": "Kaveri Rajan | Bangalore | kaveri.rajan@email.com\n\nEXPERIENCE\nProduct Analyst - EdTech (4 years)\n- Python (pandas, statsmodels, seaborn): full analytics stack\n- Tableau: 15 production dashboards\n- A/B testing: 30 experiments\n- Stakeholder communication weekly\n\nSKILLS: Python (advanced), Tableau, SQL (intermediate), A/B testing\nEDU: B.Sc CS - BITS Goa 2019"}, {"name": "Murali Krishnan", "score": 19, "recommendation": "Not Fit", "experience_years": "7 years (Supply Chain)", "top_skill": "SAP SCM + Excel + ERP", "strengths": ["Deep supply chain domain expertise", "SAP SCM: end-to-end implementation", "Excel for supply chain planning"], "gaps": ["Supply chain ops not data analytics", "No SQL analysis, Python or BI tools", "ERP ops vs analytics - different function"], "summary": "SCM professional with ERP expertise - wrong function for analytics.", "text": "Murali Krishnan | Chennai | murali.k@email.com\n\nEXPERIENCE\nSCM Manager - Manufacturing (7 years)\n- SAP SCM: procurement, inventory, logistics\n- Excel: supply chain planning\n- ERP implementation support\n\nSKILLS: SAP SCM, Excel, supply chain domain\nEDU: B.E. Industrial Engg - Anna Univ 2016"}, {"name": "Isha Kapoor", "score": 73, "recommendation": "Moderate Fit", "experience_years": "2.5 years", "top_skill": "Power BI + SQL + Python basics", "strengths": ["Power BI dashboards for marketing", "SQL intermediate for analysis", "Python basics with pandas"], "gaps": ["Python not production-ready", "No A/B testing", "No cloud warehouse"], "summary": "Marketing analyst building analytics skills - Python development needed.", "text": "Isha Kapoor | Delhi | isha.kapoor@email.com\n\nEXPERIENCE\nMarketing Analyst - D2C (2.5 years)\n- Power BI: marketing performance dashboards\n- SQL: intermediate analysis queries\n- Python (pandas basics): learning\n\nSKILLS: Power BI, SQL (intermediate), Python (beginner)\nEDU: BBA Marketing - Amity 2022"}, {"name": "Tarun Saxena", "score": 79, "recommendation": "Moderate Fit", "experience_years": "3 years", "top_skill": "SQL + Python + statistics", "strengths": ["SQL advanced with CTEs mastered", "Python pandas and scipy for analysis", "Strong statistics from M.Sc"], "gaps": ["No BI tool", "No A/B testing formally", "No cloud warehouse"], "summary": "Quantitative analyst with SQL and Python - missing BI tool.", "text": "Tarun Saxena | Lucknow | tarun.saxena@email.com\n\nEXPERIENCE\nData Analyst - FMCG (3 years)\n- SQL: advanced CTEs, window functions\n- Python (pandas, scipy): statistical analysis\n- Statistics: hypothesis testing, regression\n\nSKILLS: SQL (advanced), Python, statistics, Excel\nEDU: M.Sc Statistics - Lucknow Univ 2021"}, {"name": "Alpana Mishra", "score": 67, "recommendation": "Moderate Fit", "experience_years": "4 years (Finance)", "top_skill": "Excel + SQL + financial modelling", "strengths": ["Excel expert with financial modelling", "SQL intermediate for finance reporting", "4 years finance domain experience"], "gaps": ["No Python", "No BI tool", "Finance analytics not data analytics"], "summary": "Finance professional with SQL - domain mismatch and missing Python/BI.", "text": "Alpana Mishra | Bhopal | alpana.mishra@email.com\n\nEXPERIENCE\nFinance Analyst - Corporate (4 years)\n- Excel expert: financial models, scenario analysis\n- SQL: finance data extraction and reporting\n- Financial reporting to management\n\nSKILLS: Excel (expert), SQL (intermediate), finance domain\nEDU: MBA Finance - NMIMS 2019"}, {"name": "Ganesh Subramanian", "score": 88, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "SQL + Python + Tableau + A/B testing", "strengths": ["SQL CTEs and Snowflake DWH expert", "Python full stack and Tableau production", "A/B testing framework - 40+ experiments"], "gaps": ["No Power BI", "No scikit-learn ML", "No dbt"], "summary": "Highly capable analyst with full technical stack - excellent fit.", "text": "Ganesh Subramanian | Bangalore | ganesh.sub@email.com\n\nEXPERIENCE\nSenior Analyst - Fintech (3 years)\n- SQL: Snowflake, CTEs, window functions, complex joins\n- Python (pandas, seaborn, numpy): full analytics\n- Tableau: production dashboards for 500+ users\n- A/B testing: 40+ experiments, statistical methodology\n\nData Analyst - E-commerce (2 years)\n- SQL, Python, statistical reporting\n\nSKILLS: SQL (expert), Snowflake, Python, Tableau, A/B testing\nEDU: B.Tech CS - NIT Trichy 2018"}, {"name": "Payal Chaudhary", "score": 48, "recommendation": "Not Fit", "experience_years": "3 years (Event Mgmt)", "top_skill": "Excel + project coordination", "strengths": ["Event data and logistics tracking", "Excel for budget and attendance", "Strong coordination skills"], "gaps": ["No SQL, Python or BI tools", "Events not analytics", "No quantitative or data skills"], "summary": "Event manager - no analytics background or technical skills.", "text": "Payal Chaudhary | Jaipur | payal.chaudhary@email.com\n\nEXPERIENCE\nEvent Manager - Agency (3 years)\n- Excel: budget tracking, attendance reporting\n- Vendor coordination and logistics\n- Client relationship management\n\nSKILLS: Excel, coordination, communication\nEDU: B.A. Mass Comm - Jaipur Univ 2021"}, {"name": "Ishaan Mehta", "score": 91, "recommendation": "Strong Fit", "experience_years": "5 years", "top_skill": "Python + SQL + Power BI + A/B testing", "strengths": ["Python expert with scikit-learn and full analytics stack", "Power BI + SQL production combination", "A/B testing lead with 50+ experiments"], "gaps": ["No Tableau", "No Snowflake", "No dbt"], "summary": "Strong senior analyst with Python, BI and A/B testing expertise.", "text": "Ishaan Mehta | Mumbai | ishaan.mehta@email.com\n\nEXPERIENCE\nSenior Product Analyst - SaaS (3 years)\n- Python (pandas, scikit-learn, statsmodels): expert\n- Power BI: 22 production dashboards\n- A/B testing lead: 50+ experiments, statistical framework\n- SQL: advanced CTEs, window functions\n\nData Analyst - IT (2 years)\n- Python, SQL, statistical analysis\n\nSKILLS: Python (expert), Power BI, SQL, scikit-learn, A/B testing\nEDU: B.Tech CS - IIT Roorkee 2018"}];
+
+/* ── PDF.js worker ── */
+if(typeof pdfjsLib!=='undefined'){
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+</script>
+
+<script type="text/babel">
+const {useState,useRef,useCallback,useEffect} = React;
+
+/* ══════════════════════════════════════
+   CONSTANTS
+══════════════════════════════════════ */
+const DEFAULT_JD = `POSITION: Data Analyst
+COMPANY: NovaTech Analytics Pvt. Ltd. | Bangalore, India (Hybrid)
+
+REQUIRED SKILLS:
+• 2+ years data analyst experience
+• Advanced SQL (CTEs, window functions, complex joins)
+• Python (pandas, numpy, matplotlib/seaborn)
+• Tableau OR Power BI (must have at least one)
+• Statistical analysis & A/B testing
+• Strong communication for non-technical stakeholders
+• B.Sc/B.Tech/M.Sc in Statistics, Maths, CS, or related
+
+NICE TO HAVE:
+• Cloud warehouses: Snowflake, BigQuery, Redshift
+• Machine learning basics (scikit-learn)
+• dbt, Mixpanel/Amplitude
+
+RESPONSIBILITIES:
+• Analyse large datasets to uncover business trends
+• Build & maintain interactive dashboards
+• Design & evaluate A/B experiments
+• Present findings to stakeholders`;
+
+const SOP = `STANDARD OPERATING PROCEDURE
+Helios Resume Scanner — AI-Powered Screening System
+Document: HR-SOP-2025-01 | Version 3.0
+
+PURPOSE
+Reduce manual screening time by 70%+ using AI while maintaining
+consistent, bias-aware evaluation across all candidates.
+
+STEP-BY-STEP PROCESS
+
+  1. Paste / edit the Job Description in the left panel.
+     Update it for every new role before scanning.
+
+  2. Add candidates using any of these methods:
+     a) Upload individual .docx or .pdf resume files
+     b) Paste resume text directly
+     c) Import a CSV file (see format below)
+     d) Click "Load 80 sample candidates" for demo data
+
+  3. Click "Scan Resumes".
+     — AI analyzes each resume against the JD.
+     — Takes ~6 seconds per candidate (Gemini free tier).
+
+  4. Review the Results screen:
+     — Candidates ranked by AI score (0-100)
+     — Expand any card to see Strengths and Gaps
+     — Click "CV" to view the full resume text
+     — Click "Why this score?" for detailed AI rationale
+
+  5. Export CSV for documentation and audit trail.
+
+SCORING FRAMEWORK (Gemini AI)
+  Technical Skills Match    40%
+  Experience Relevance      30%
+  Education & Certifications 15%
+  Communication Quality     15%
+
+DECISION GUIDELINES
+  Score >= 80   Strong Fit    → Proceed to technical interview
+  Score 50-79   Moderate Fit  → Hiring manager review
+  Score < 50    Not Fit       → Polite rejection
+
+CSV IMPORT FORMAT
+  Required columns: name, resume_text
+  Optional columns: score, recommendation, experience_years,
+                    top_skill, strength1-3, gap1-3, summary
+  Pre-scored rows go straight to results.
+  Unscored rows get analyzed by Gemini AI.
+
+ETHICS & BIAS
+  AI evaluates skills and experience only.
+  All scores must be reviewed by a human before decisions.
+  Never auto-reject without manager sign-off.`;
+
+const BANDS = [
+  {label:'90–100 · Top Tier',min:90,max:100,bg:'#eaf3de',clr:'#2d6a3f',bd:'#7ec89a'},
+  {label:'80–89 · Strong Fit',min:80,max:89,bg:'#e8f5ed',clr:'#2d6a3f',bd:'#97C459'},
+  {label:'70–79 · Good Fit',min:70,max:79,bg:'#fff3d4',clr:'#8a5a00',bd:'#d4a017'},
+  {label:'60–69 · Moderate',min:60,max:69,bg:'#fff8ec',clr:'#a06800',bd:'#f5c06a'},
+  {label:'50–59 · Borderline',min:50,max:59,bg:'#fdeaea',clr:'#8b2020',bd:'#e08080'},
+  {label:'Below 50 · Not Fit',min:0,max:49,bg:'#f5eded',clr:'#6b1515',bd:'#d08080'},
+];
+
+/* ══════════════════════════════════════
+   HELPERS
+══════════════════════════════════════ */
+const rc = r => {
+  if(!r) return '';
+  const s = r.toLowerCase();
+  if(s.includes('strong')) return 'b-s';
+  if(s.includes('moderate')) return 'b-m';
+  return 'b-n';
+};
+const ss = s => {
+  if(s>=75) return {bdr:'var(--green-bd)',clr:'var(--green)',bg:'var(--green-bg)'};
+  if(s>=50) return {bdr:'var(--amber-bd)',clr:'var(--amber)',bg:'var(--amber-bg)'};
+  return {bdr:'var(--red-bd)',clr:'var(--red)',bg:'var(--red-bg)'};
+};
+const avStyle = name => {
+  const h = name.split('').reduce((a,c)=>a+c.charCodeAt(0),0)%360;
+  return {background:`hsl(${h},50%,88%)`,color:`hsl(${h},40%,28%)`};
+};
+const inits = n => n.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+
+/* ══════════════════════════════════════
+   PDF EXTRACTION
+══════════════════════════════════════ */
+async function extractPDF(arrayBuffer) {
+  try {
+    const pdf = await pdfjsLib.getDocument({data: new Uint8Array(arrayBuffer)}).promise;
+    let text = '';
+    for(let i=1; i<=pdf.numPages; i++){
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const pageText = content.items.map(item=>item.str).join(' ');
+      text += pageText + '\n';
+    }
+    return text.trim();
+  } catch(e) {
+    throw new Error('PDF extraction failed: ' + e.message);
+  }
+}
+
+/* ══════════════════════════════════════
+   GEMINI API
+══════════════════════════════════════ */
+async function analyzeWithGemini(apiKey, name, resumeText, jd) {
+  const prompt = `You are a senior HR recruiter. Analyze this resume against the job description.
+Return ONLY valid JSON. No markdown, no code fences, no extra text.
+
+JOB DESCRIPTION:
+${jd}
+
+CANDIDATE: ${name}
+RESUME TEXT:
+${resumeText.slice(0, 4000)}
+
+Return this exact JSON structure:
+{
+  "score": <integer 0-100>,
+  "recommendation": "Strong Fit",
+  "summary": "<one clear sentence about this candidate>",
+  "experience_years": "<X years>",
+  "top_skill": "<single most relevant skill>",
+  "strengths": ["strength 1", "strength 2", "strength 3"],
+  "gaps": ["gap 1", "gap 2", "gap 3"],
+  "scoring_rationale": "<2-3 sentences explaining score, referencing specific JD requirements>"
+}
+
+Rules:
+- recommendation = "Strong Fit" if score>=75, "Moderate Fit" if score 50-74, "Not Fit" if score<50
+- Score dimensions: Technical Skills Match 40%, Experience Relevance 30%, Education 15%, Communication 15%
+- Be specific and reference the JD when identifying strengths and gaps`;
+
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        contents: [{parts: [{text: prompt}]}],
+        generationConfig: {temperature: 0.1, maxOutputTokens: 800, responseMimeType: "application/json"}
+      })
+    }
+  );
+
+  if(!response.ok) {
+    const err = await response.json().catch(()=>({}));
+    const msg = err?.error?.message || `HTTP ${response.status}`;
+    if(response.status === 400) throw new Error('Invalid API key — check your Gemini key.');
+    if(response.status === 429) throw new Error('Rate limited — wait 30 seconds and retry.');
+    throw new Error(msg);
+  }
+
+  const data = await response.json();
+  const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+  const clean = raw.replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,'').trim();
+  const parsed = JSON.parse(clean);
+  parsed.score = Math.max(0, Math.min(100, parseInt(parsed.score, 10) || 0));
+  return parsed;
+}
+
+/* ══════════════════════════════════════
+   CSV HELPERS
+══════════════════════════════════════ */
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  if(lines.length < 2) return [];
+
+  // Parse header row (handles quoted headers)
+  const parseRow = line => {
+    const cells = [];
+    let cur = '', inQ = false;
+    for(const ch of line) {
+      if(ch === '"') { inQ = !inQ; }
+      else if(ch === ',' && !inQ) { cells.push(cur.replace(/^"|"$/g,'').trim()); cur = ''; }
+      else cur += ch;
+    }
+    cells.push(cur.replace(/^"|"$/g,'').trim());
+    return cells;
+  };
+
+  const headers = parseRow(lines[0]).map(h => h.toLowerCase().replace(/[\s-]+/g,'_'));
+  const result = [];
+
+  for(let i = 1; i < lines.length; i++) {
+    if(!lines[i].trim()) continue;
+    const cells = parseRow(lines[i]);
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = (cells[idx] || '').trim(); });
+    if(obj.name && obj.name.length > 1) result.push(obj);
+  }
+  return result;
+}
+
+function csvRowToResult(obj) {
+  return {
+    name: obj.name || 'Unknown',
+    score: parseInt(obj.score) || 0,
+    recommendation: obj.recommendation || 'Not Fit',
+    experience_years: obj.experience_years || obj.experience || '—',
+    top_skill: obj.top_skill || '—',
+    strengths: [obj.strength1, obj.strength2, obj.strength3].filter(Boolean),
+    gaps: [obj.gap1, obj.gap2, obj.gap3].filter(Boolean),
+    summary: obj.summary || '',
+    text: obj.resume_text || obj.text || obj.resume || '',
+  };
+}
+
+function exportCSV(results) {
+  const headers = ['Rank','Name','Score','Recommendation','Experience','Top Skill',
+    'Strength 1','Strength 2','Strength 3','Gap 1','Gap 2','Gap 3','Summary','Resume Text'];
+  const rows = results.map((r,i) => [
+    i+1, r.name, r.score, r.recommendation, r.experience_years||'', r.top_skill||'',
+    ...(r.strengths||[]).slice(0,3).map(s=>s||''),
+    ...(r.gaps||[]).slice(0,3).map(g=>g||''),
+    r.summary||'', (r.text||'').replace(/\n/g,' ')
+  ]);
+  const csv = [headers, ...rows].map(r =>
+    r.map(c => `"${String(c||'').replace(/"/g,'""')}"`).join(',')
+  ).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `helios_results_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ══════════════════════════════════════
+   RESUME MODAL
+══════════════════════════════════════ */
+function ResumeModal({result, onClose, apiKey, jd}) {
+  const [tab, setTab] = useState('resume');
+  const [aiText, setAiText] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const loadExplain = async () => {
+    if(aiText) { setTab('explain'); return; }
+    setTab('explain');
+    if(!apiKey) { setAiText('__nokey__'); return; }
+    setLoading(true);
+    try {
+      const prompt = `You are an expert HR consultant. Explain in structured detail why this candidate scored ${result.score}/100 for this role.
+
+JOB DESCRIPTION:
+${jd}
+
+CANDIDATE: ${result.name}
+SCORE: ${result.score}/100  
+RECOMMENDATION: ${result.recommendation}
+RESUME:
+${(result.text||'').slice(0,3000)}
+
+Explain the score across all 4 dimensions:
+1. Technical Skills Match (40%) — what exactly matched or didn't vs the JD
+2. Experience Relevance (30%) — years, domain fit, depth
+3. Education & Certifications (15%) — degree relevance
+4. Communication Quality (15%) — how it came across in the resume
+
+Be specific. Reference actual JD requirements.`;
+
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+        {method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            contents:[{parts:[{text:prompt}]}],
+            generationConfig:{temperature:0.2, maxOutputTokens:900}
+          })}
+      );
+      const data = await res.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Could not generate explanation.';
+      setAiText(text);
+    } catch(e) {
+      setAiText('Error: ' + e.message);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="overlay" onClick={e => { if(e.target === e.currentTarget) onClose(); }}>
+      <div className="modal">
+        <div className="modal-hdr">
+          <div className="av" style={{...avStyle(result.name), width:28, height:28, fontSize:9, borderRadius:'50%', border:'none'}}>
+            {inits(result.name)}
+          </div>
+          <div className="modal-ttl">{result.name}</div>
+          <span className={`badge-rec ${rc(result.recommendation)}`}>{result.recommendation}</span>
+          <div className="score-ring" style={{borderColor:ss(result.score).bdr, background:ss(result.score).bg, width:36, height:36}}>
+            <span className="sr-n" style={{color:ss(result.score).clr, fontSize:12}}>{result.score}</span>
+          </div>
+          <button className="modal-x" onClick={onClose}>×</button>
+        </div>
+
+        <div className="m-tab-bar">
+          <button className={`m-tab ${tab==='resume'?'on':''}`} onClick={()=>setTab('resume')}>📄 Full Resume</button>
+          <button className={`m-tab ${tab==='explain'?'on':''}`} onClick={loadExplain}>🤖 Why this score?</button>
+        </div>
+
+        <div className="modal-body">
+          {tab === 'resume' && (
+            result.text
+              ? <pre className="resume-pre">{result.text}</pre>
+              : <div style={{color:'var(--ink3)', fontSize:13, padding:'20px', textAlign:'center'}}>
+                  No resume text stored for this candidate.
+                </div>
+          )}
+          {tab === 'explain' && (
+            loading
+              ? <div className="spin-wrap"><div className="spinner"/><span>Generating AI explanation…</span></div>
+              : aiText === '__nokey__'
+                ? <div style={{background:'var(--amber-bg)',border:'1px solid var(--amber-bd)',borderRadius:9,padding:14,fontSize:13,color:'var(--amber)'}}>
+                    Connect your Gemini API key to get AI score explanations.
+                  </div>
+                : aiText
+                  ? <div className="ai-box">
+                      <h4>Score Breakdown — {result.name} ({result.score}/100)</h4>
+                      {aiText.split('\n').filter(l=>l.trim()).map((line,i) => (
+                        <p key={i} style={{marginBottom:6}}>{line}</p>
+                      ))}
+                    </div>
+                  : null
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════
+   RESULT CARD
+══════════════════════════════════════ */
+function ResultCard({result, rank, expanded, onToggle, onRemove, onView}) {
+  const ring = ss(result.score);
+  return (
+    <div className="rc" style={{animationDelay: `${Math.min(rank*0.025, 0.4)}s`}}>
+      <div className="rc-top" onClick={onToggle}>
+        <div className={`rank-circle ${rank<=3?'gold':''}`}>#{rank}</div>
+        <div className="av" style={{...avStyle(result.name), border:'none', borderRadius:'50%'}}>{inits(result.name)}</div>
+        <div className="rc-info">
+          <div className="rc-name">{result.name}</div>
+          <div className="rc-sum">{result.summary}</div>
+        </div>
+        {result.experience_years && (
+          <div style={{fontSize:10, color:'var(--ink3)', whiteSpace:'nowrap', flexShrink:0}}>
+            {result.experience_years}
+          </div>
+        )}
+        <span className={`badge-rec ${rc(result.recommendation)}`}>{result.recommendation}</span>
+        <div className="score-ring" style={{borderColor:ring.bdr, background:ring.bg}}>
+          <span className="sr-n" style={{color:ring.clr}}>{result.score}</span>
+          <span className="sr-d" style={{color:ring.clr}}>/100</span>
+        </div>
+        <svg className={`chev ${expanded?'open':''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+        <button className="icon-btn" title="View full resume"
+          onClick={e => { e.stopPropagation(); onView(); }}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          CV
+        </button>
+        <button className="rm-btn" title="Remove candidate"
+          onClick={e => { e.stopPropagation(); onRemove(); }}>×</button>
+      </div>
+
+      {expanded && (
+        <div className="rc-body">
+          <div className="sg-grid">
+            <div>
+              <div className="sg-lbl" style={{color:'var(--green)'}}>✓ Strengths</div>
+              {(result.strengths||[]).map((s,i) => (
+                <span key={i} className="tag" style={{background:'var(--green-bg)',color:'var(--green)',border:'1px solid var(--green-bd)'}}>{s}</span>
+              ))}
+            </div>
+            <div>
+              <div className="sg-lbl" style={{color:'var(--red)'}}>⚠ Gaps</div>
+              {(result.gaps||[]).map((g,i) => (
+                <span key={i} className="tag" style={{background:'var(--red-bg)',color:'var(--red)',border:'1px solid var(--red-bd)'}}>{g}</span>
+              ))}
+            </div>
+          </div>
+          {result.top_skill && (
+            <div style={{marginTop:8, fontSize:11, color:'var(--ink3)'}}>
+              <strong style={{color:'var(--ink2)'}}>Top skill:</strong> {result.top_skill}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════
+   MAIN APP
+══════════════════════════════════════ */
+function App() {
+  // screen: 'setup' | 'scanning' | 'results'
+  const [screen, setScreen] = useState('setup');
+  const [resultTab, setResultTab] = useState('ranked');
+
+  // API
+  const [apiKey, setApiKey] = useState('');
+  const [apiSaved, setApiSaved] = useState(false);
+  const [apiErr, setApiErr] = useState('');
+
+  // JD
+  const [jd, setJd] = useState(DEFAULT_JD);
+
+  // Candidates queue (unscored, waiting to be analyzed)
+  const [queue, setQueue] = useState([]);
+
+  // Pre-scored candidates (from CSV with scores) - bypass AI
+  const [preScored, setPreScored] = useState([]);
+
+  // Results
+  const [results, setResults] = useState([]);
+  const [expanded, setExpanded] = useState(null);
+  const [modalResult, setModalResult] = useState(null);
+
+  // Scanning state
+  const [scanProgress, setScanProgress] = useState({cur:0, total:0, name:''});
+  const [scanError, setScanError] = useState('');
+  const abortRef = useRef(false);
+
+  // Add form state
+  const [candName, setCandName] = useState('');
+  const [candText, setCandText] = useState('');
+  const [fileState, setFileState] = useState('idle'); // idle|loading|done|err
+  const [fileMsg, setFileMsg] = useState('');
+
+  // CSV
+  const [csvMsg, setCsvMsg] = useState('');
+  const [csvBusy, setCsvBusy] = useState(false);
+
+  // Sample load
+  const [sampleLoaded, setSampleLoaded] = useState(false);
+
+  /* ── API Key ── */
+  const saveKey = () => {
+    const k = apiKey.trim();
+    if(k.startsWith('AIza') && k.length > 20) { setApiSaved(true); setApiErr(''); }
+    else setApiErr('Gemini keys start with "AIza…" and are 39+ characters.');
+  };
+
+  /* ── File upload: DOCX or PDF ── */
+  const handleFile = async e => {
+    const file = e.target.files?.[0];
+    if(!file) return;
+    e.target.value = '';
+    setFileState('idle'); setFileMsg('');
+
+    if(!candName.trim()) {
+      setFileState('err');
+      setFileMsg('Enter candidate name first, then upload.');
+      return;
+    }
+
+    const ext = file.name.split('.').pop().toLowerCase();
+    if(!['docx','pdf'].includes(ext)) {
+      setFileState('err');
+      setFileMsg('Only .docx and .pdf files supported.');
+      return;
+    }
+
+    setFileState('loading');
+    setFileMsg(`Reading "${file.name}"…`);
+
+    try {
+      const buffer = await file.arrayBuffer();
+      let text = '';
+
+      if(ext === 'docx') {
+        const result = await mammoth.extractRawText({arrayBuffer: buffer});
+        text = result.value.trim();
+      } else {
+        text = await extractPDF(buffer);
+      }
+
+      if(!text || text.length < 30) {
+        setFileState('err');
+        setFileMsg('Could not extract text. File may be scanned/image-based. Paste text manually.');
+        return;
+      }
+
+      setCandText(text);
+      setFileState('done');
+      setFileMsg(`✓ ${file.name} — ${text.length.toLocaleString()} characters extracted`);
+    } catch(err) {
+      setFileState('err');
+      setFileMsg('Error: ' + err.message);
+    }
+  };
+
+  /* ── Add to queue ── */
+  const addToQueue = () => {
+    if(!candName.trim() || !candText.trim()) return;
+    setQueue(p => [...p, {name: candName.trim(), text: candText.trim(), source: 'manual'}]);
+    setCandName(''); setCandText('');
+    setFileState('idle'); setFileMsg('');
+  };
+
+  /* ── Load 80 sample candidates ── */
+  const loadSamples = () => {
+    // All have scores, so they're pre-scored
+    const samples = SAMPLE_DATASET.map(c => ({...c, _source: 'sample'}));
+    setPreScored(p => {
+      const existing = new Set(p.map(x=>x.name));
+      return [...p, ...samples.filter(s=>!existing.has(s.name))];
+    });
+    setSampleLoaded(true);
+  };
+
+  /* ── CSV import ── */
+  const handleCSV = async e => {
+    const file = e.target.files?.[0];
+    if(!file) return;
+    e.target.value = '';
+    setCsvBusy(true); setCsvMsg('');
+
+    try {
+      const text = await file.text();
+      const rows = parseCSV(text);
+
+      if(!rows.length) {
+        setCsvMsg('⚠ No valid rows found in CSV.');
+        setCsvBusy(false);
+        return;
+      }
+
+      let addedScored = 0, addedQueue = 0;
+      const newScored = [];
+      const newQueue = [];
+
+      for(const row of rows) {
+        const score = parseInt(row.score);
+        if(score > 0) {
+          newScored.push(csvRowToResult(row));
+          addedScored++;
+        } else if(row.name && (row.resume_text || row.text)) {
+          newQueue.push({
+            name: row.name,
+            text: row.resume_text || row.text || '',
+            source: 'csv'
+          });
+          addedQueue++;
+        } else if(row.name) {
+          // Name only - just add to queue with whatever text exists
+          newQueue.push({
+            name: row.name,
+            text: row.resume_text || row.text || row.summary || `Candidate: ${row.name}`,
+            source: 'csv'
+          });
+          addedQueue++;
+        }
+      }
+
+      if(newScored.length) {
+        setPreScored(p => {
+          const existing = new Set(p.map(x=>x.name));
+          return [...p, ...newScored.filter(s=>!existing.has(s.name))];
+        });
+      }
+      if(newQueue.length) {
+        setQueue(p => {
+          const existing = new Set(p.map(x=>x.name));
+          return [...p, ...newQueue.filter(q=>!existing.has(q.name))];
+        });
+      }
+
+      setCsvMsg(`✓ Loaded: ${addedScored} pre-scored + ${addedQueue} to analyze`);
+    } catch(err) {
+      setCsvMsg('⚠ Parse error: ' + err.message);
+    }
+    setCsvBusy(false);
+  };
+
+  /* ── SCAN ── */
+  const runScan = async () => {
+    const hasWork = queue.length > 0 || preScored.length > 0;
+    if(!hasWork) { setScanError('Add candidates first.'); return; }
+    if(queue.length > 0 && !apiSaved) { setScanError('Add Gemini API key to analyze new resumes.'); return; }
+
+    setScreen('scanning');
+    setScanError('');
+    abortRef.current = false;
+    setScanProgress({cur:0, total:queue.length, name:''});
+
+    const newResults = [];
+
+    for(let i = 0; i < queue.length; i++) {
+      if(abortRef.current) break;
+      const c = queue[i];
+      setScanProgress({cur:i+1, total:queue.length, name:c.name});
+      try {
+        const r = await analyzeWithGemini(apiKey, c.name, c.text, jd);
+        newResults.push({name:c.name, text:c.text, ...r});
+      } catch(err) {
+        newResults.push({
+          name: c.name, text: c.text,
+          score: 0, recommendation: 'Not Fit',
+          summary: 'Analysis failed: ' + err.message,
+          strengths: [], gaps: ['Error: ' + err.message],
+          experience_years: '—', top_skill: '—'
+        });
+        if(err.message.includes('Invalid API key')) {
+          setScanError('Invalid API key — stopped early.');
+          break;
+        }
+      }
+    }
+
+    // Merge pre-scored + newly analyzed, sort by score
+    const allResults = [...preScored, ...newResults].sort((a,b) => b.score - a.score);
+    setResults(allResults);
+    setQueue([]);
+    setPreScored([]);
+    setScreen('results');
+    setResultTab('ranked');
+  };
+
+  /* ── Remove candidate (auto-promote from wait queue) ── */
+  const removeResult = useCallback(name => {
+    setResults(prev => prev.filter(r => r.name !== name));
+  }, []);
+
+  /* ── Back to setup (keeping results) ── */
+  const backToSetup = () => {
+    setScreen('setup');
+    setScanError('');
+  };
+
+  /* ── COMPUTED ── */
+  const totalCands = queue.length + preScored.length;
+  const pct = scanProgress.total > 0
+    ? Math.round((scanProgress.cur / scanProgress.total) * 100)
+    : 0;
+
+  const strongC = results.filter(r=>r.score>=75).length;
+  const modC = results.filter(r=>r.score>=50&&r.score<75).length;
+  const notC = results.filter(r=>r.score<50).length;
+  const avgScore = results.length
+    ? Math.round(results.reduce((s,r)=>s+(r.score||0),0)/results.length)
+    : 0;
+
+  /* ══════════════════════════════════════
+     RENDER
+  ══════════════════════════════════════ */
+  return (
+    <>
+    {modalResult && (
+      <ResumeModal
+        result={modalResult}
+        onClose={() => setModalResult(null)}
+        apiKey={apiSaved ? apiKey : ''}
+        jd={jd}
+      />
+    )}
+
+    {/* HEADER */}
+    <div className="hdr">
+      <div className="logo">
+        <div className="logo-ico">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="11" r="7" fill="#ffd580" opacity=".9"/>
+            <path d="M16 18L10.5 30L16 26.5L21.5 30Z" fill="#ffd580" opacity=".7"/>
+            <circle cx="16" cy="11" r="3.5" fill="#fff" opacity=".95"/>
+            <circle cx="16" cy="11" r="1.8" fill="#ffb020"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Helios Resume Scanner</h1>
+          <p>AI-powered candidate screening · Gemini 2.0 Flash</p>
+        </div>
+      </div>
+      <div style={{display:'flex',gap:7,alignItems:'center',flexWrap:'wrap'}}>
+        {screen === 'results' && (
+          <button className="btn" onClick={backToSetup}>← Add more candidates</button>
+        )}
+        <span className="hdr-pill">⚡ v3.0</span>
+      </div>
+    </div>
+
+    {/* ══ SETUP SCREEN ══ */}
+    {screen === 'setup' && (
+      <div className="screen">
+
+        {/* API Key */}
+        {!apiSaved ? (
+          <div className="api-band">
+            <h3>🔑 Connect Gemini API Key — required to analyze resumes</h3>
+            <p>Free tier · 1,500 requests/day · no credit card · <a href="https://aistudio.google.com" target="_blank" rel="noreferrer">aistudio.google.com</a> → Sign in → Get API Key</p>
+            <div className="api-row">
+              <input
+                type="password"
+                value={apiKey}
+                onChange={e=>setApiKey(e.target.value)}
+                onKeyDown={e=>e.key==='Enter'&&saveKey()}
+                placeholder="AIzaSy…"
+              />
+              <button className="api-save" onClick={saveKey}>Save key →</button>
+            </div>
+            {apiErr && <div className="api-err">{apiErr}</div>}
+            <div className="api-note">Skip this if you only want to use pre-scored CSV candidates (no AI analysis needed).</div>
+          </div>
+        ) : (
+          <div className="api-ok">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Gemini API connected — ready to analyze resumes
+            <button onClick={()=>{setApiSaved(false);setApiKey('');}}>Change</button>
+          </div>
+        )}
+
+        <div className="setup-cols">
+
+          {/* LEFT — Job Description */}
+          <div className="panel jd">
+            <div className="panel-lbl">
+              <span className="pill pill-sun">JD</span>
+              Job Description
+            </div>
+            <textarea
+              className="jd-ta"
+              value={jd}
+              onChange={e=>setJd(e.target.value)}
+              placeholder="Paste the job description here. All AI analysis uses this as the benchmark…"
+            />
+            <div style={{fontSize:10,color:'var(--ink3)',marginTop:6}}>
+              Edit this for every new role · AI scores each resume against this JD
+            </div>
+          </div>
+
+          {/* RIGHT — Candidates */}
+          <div className="panel">
+            <div className="panel-lbl">
+              <span className="pill pill-blue">Candidates</span>
+              Add Candidates
+              {totalCands > 0 && (
+                <span style={{marginLeft:'auto',fontSize:11,fontWeight:600,color:'var(--accent)'}}>
+                  {totalCands} ready
+                </span>
+              )}
+            </div>
+
+            <div className="cand-section">
+
+              {/* CSV import + sample */}
+              <div className="csv-bar">
+                <span style={{fontSize:10,fontWeight:700,color:'var(--ink3)'}}>IMPORT</span>
+                <label className="file-btn" style={{opacity:csvBusy?.4:1}}>
+                  <input
+                    type="file"
+                    accept=".csv,text/csv"
+                    onChange={handleCSV}
+                    disabled={csvBusy}
+                  />
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  {csvBusy ? 'Reading…' : '↑ CSV File'}
+                </label>
+                {!sampleLoaded ? (
+                  <button className="btn" style={{fontSize:11,padding:'5px 10px'}} onClick={loadSamples}
+                    title="Load the 80 built-in sample candidates">
+                    📋 Load 80 samples
+                  </button>
+                ) : (
+                  <span style={{fontSize:10,color:'var(--green)',fontWeight:600}}>✓ 80 samples loaded</span>
+                )}
+                {csvMsg && (
+                  <span className="csv-msg" style={{color:csvMsg.startsWith('✓')?'var(--green)':'var(--amber)'}}>
+                    {csvMsg}
+                  </span>
+                )}
+              </div>
+
+              <div style={{fontSize:10,color:'var(--ink3)',fontWeight:600,textTransform:'uppercase',letterSpacing:'.04em'}}>
+                Or add manually
+              </div>
+
+              {/* Name */}
+              <input
+                className="name-in"
+                type="text"
+                value={candName}
+                onChange={e=>setCandName(e.target.value)}
+                placeholder="Candidate full name (required)"
+              />
+
+              {/* File upload — DOCX + PDF */}
+              <label style={{display:'block'}}>
+                <div className={`upload-zone ${fileState==='loading'?'uz-load':''} ${fileState==='done'?'uz-done':''} ${fileState==='err'?'uz-err':''}`}>
+                  <input
+                    type="file"
+                    accept=".docx,.pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    onChange={handleFile}
+                  />
+                  <span style={{fontSize:18,flexShrink:0}}>
+                    {fileState==='loading'?'⏳':fileState==='done'?'✅':fileState==='err'?'❌':'📎'}
+                  </span>
+                  <span>
+                    {fileState==='idle' && <><strong>Upload .docx or .pdf resume</strong> — text extracted instantly</>}
+                    {fileState==='loading' && fileMsg}
+                    {fileState==='done' && <span style={{color:'var(--green)'}}>{fileMsg}</span>}
+                    {fileState==='err' && <span style={{color:'var(--red)'}}>{fileMsg}</span>}
+                  </span>
+                </div>
+              </label>
+
+              {/* Text area */}
+              <textarea
+                className="res-ta"
+                value={candText}
+                onChange={e=>setCandText(e.target.value)}
+                placeholder="Resume text appears here after upload — or paste directly…"
+              />
+
+              {/* Add button */}
+              <button
+                className="btn btn-p"
+                onClick={addToQueue}
+                disabled={!candName.trim() || !candText.trim()}
+                style={{alignSelf:'flex-start'}}
+              >
+                + Add to queue
+              </button>
+            </div>
+
+            {/* Queue list */}
+            {(queue.length > 0 || preScored.length > 0) && (
+              <div className="queue-wrap" style={{marginTop:12}}>
+                <div className="queue-title">
+                  <span>📋 Ready to scan</span>
+                  {queue.length > 0 && (
+                    <span style={{background:'var(--accent-bg)',color:'var(--accent)',border:'1px solid #b3cdf5',fontSize:9,padding:'1px 6px',borderRadius:8,fontWeight:700}}>
+                      {queue.length} will be analyzed by AI
+                    </span>
+                  )}
+                  {preScored.length > 0 && (
+                    <span style={{background:'var(--green-bg)',color:'var(--green)',border:'1px solid var(--green-bd)',fontSize:9,padding:'1px 6px',borderRadius:8,fontWeight:700}}>
+                      {preScored.length} pre-scored
+                    </span>
+                  )}
+                </div>
+                <div style={{maxHeight:200,overflowY:'auto'}}>
+                  {preScored.map((c,i) => (
+                    <div key={'ps-'+i} className="q-item">
+                      <div className="q-av" style={{...avStyle(c.name),border:'none'}}>{inits(c.name)}</div>
+                      <div className="q-name">{c.name}</div>
+                      <span className="q-tag" style={{background:'var(--green-bg)',color:'var(--green)',borderColor:'var(--green-bd)'}}>
+                        score: {c.score}
+                      </span>
+                      <button className="q-del" onClick={()=>setPreScored(p=>p.filter((_,j)=>j!==i))}>×</button>
+                    </div>
+                  ))}
+                  {queue.map((c,i) => (
+                    <div key={'q-'+i} className="q-item">
+                      <div className="q-av" style={{...avStyle(c.name),border:'none'}}>{inits(c.name)}</div>
+                      <div className="q-name">{c.name}</div>
+                      <span className="q-tag">{c.source}</span>
+                      <button className="q-del" onClick={()=>setQueue(p=>p.filter((_,j)=>j!==i))}>×</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* SCAN BUTTON */}
+        {scanError && (
+          <div style={{textAlign:'center',color:'var(--red)',fontSize:13,marginBottom:10}}>
+            {scanError}
+          </div>
+        )}
+        <div className="scan-wrap">
+          <button
+            className="scan-btn"
+            onClick={runScan}
+            disabled={totalCands === 0 || (queue.length > 0 && !apiSaved)}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            Scan {totalCands > 0 ? totalCands + ' Resume' + (totalCands!==1?'s':'') : 'Resumes'}
+          </button>
+          {totalCands === 0 && (
+            <div className="scan-hint">Add candidates above or load the 80 sample dataset to begin</div>
+          )}
+          {queue.length > 0 && !apiSaved && (
+            <div className="scan-hint" style={{color:'var(--red)'}}>
+              ⚠ Add Gemini API key to analyze the {queue.length} manual/CSV candidate{queue.length!==1?'s':''}
+            </div>
+          )}
+          {preScored.length > 0 && queue.length === 0 && (
+            <div className="scan-hint" style={{color:'var(--green)'}}>
+              ✓ {preScored.length} pre-scored candidates will go straight to results (no API needed)
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    {/* ══ SCANNING SCREEN ══ */}
+    {screen === 'scanning' && (
+      <div className="screen scan-screen">
+        <div style={{fontSize:52,marginBottom:14}}>
+          {pct >= 100 ? '✅' : '🔍'}
+        </div>
+        <h2>{pct >= 100 ? 'Analysis Complete!' : 'Scanning Resumes…'}</h2>
+        <p className="sub">
+          {pct >= 100
+            ? 'Building your results dashboard…'
+            : `Gemini AI is analyzing each resume against your JD`
+          }
+        </p>
+        <div className="prog-track">
+          <div className="prog-fill" style={{width: `${Math.max(pct, scanProgress.total===0?100:0)}%`}}/>
+        </div>
+        <div className="prog-txt">
+          {scanProgress.total > 0
+            ? `${scanProgress.cur} of ${scanProgress.total} analyzed · ${pct}%`
+            : 'Processing pre-scored candidates…'
+          }
+        </div>
+        {scanProgress.name && (
+          <div className="scan-name">Analyzing: {scanProgress.name}</div>
+        )}
+        <div className="scan-dots">
+          <div className="dot"/>
+          <div className="dot"/>
+          <div className="dot"/>
+        </div>
+        {scanError && (
+          <div style={{color:'var(--red)',fontSize:13,marginTop:16,maxWidth:400}}>{scanError}</div>
+        )}
+      </div>
+    )}
+
+    {/* ══ RESULTS SCREEN ══ */}
+    {screen === 'results' && (
+      <div className="screen">
+        {/* Header bar */}
+        <div className="res-hdr-bar">
+          <div>
+            <div className="res-title">Screening Results</div>
+            <div className="res-sub">
+              Ranked by AI score · click card to expand · CV = full resume · × = remove candidate
+            </div>
+          </div>
+          <div className="res-actions">
+            <label className="file-btn" style={{opacity:csvBusy?.4:1}}>
+              <input type="file" accept=".csv,text/csv" onChange={handleCSV} disabled={csvBusy}/>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              Import CSV
+            </label>
+            <button className="btn btn-p" onClick={() => exportCSV(results)}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Export CSV
+            </button>
+            {csvMsg && (
+              <span style={{fontSize:10,fontWeight:600,color:csvMsg.startsWith('✓')?'var(--green)':'var(--amber)'}}>
+                {csvMsg}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Metrics */}
+        <div className="metrics">
+          {[
+            {l:'Total',v:results.length,c:'var(--ink)'},
+            {l:'Strong Fit ≥75',v:strongC,c:'var(--green)'},
+            {l:'Moderate 50–74',v:modC,c:'var(--amber)'},
+            {l:'Not Fit <50',v:notC,c:'var(--red)'},
+            {l:'Avg Score',v:avgScore,c:'var(--ink)'},
+          ].map((m,i) => (
+            <div key={i} className="metric">
+              <div className="m-l">{m.l}</div>
+              <div className="m-v" style={{color:m.c}}>{m.v}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Result tabs */}
+        <div className="tabs">
+          <button className={`tab ${resultTab==='ranked'?'on':''}`} onClick={()=>setResultTab('ranked')}>
+            📊 Ranked Results ({results.length})
+          </button>
+          <button className={`tab ${resultTab==='table'?'on':''}`} onClick={()=>setResultTab('table')}>
+            🗂 Data Table
+          </button>
+          <button className={`tab ${resultTab==='sop'?'on':''}`} onClick={()=>setResultTab('sop')}>
+            📋 SOP & Guide
+          </button>
+        </div>
+
+        {/* ── RANKED ── */}
+        {resultTab === 'ranked' && (
+          <>
+            {BANDS.map(band => {
+              const inBand = results.filter(r => r.score >= band.min && r.score <= band.max);
+              if(!inBand.length) return null;
+              return (
+                <div key={band.label}>
+                  <div className="band-hdr" style={{background:band.bg,color:band.clr,border:`1px solid ${band.bd}`}}>
+                    <span>{band.label}</span>
+                    <span style={{marginLeft:'auto',opacity:.7}}>
+                      {inBand.length} candidate{inBand.length!==1?'s':''}
+                    </span>
+                  </div>
+                  {inBand.map(r => {
+                    const globalRank = results.indexOf(r) + 1;
+                    return (
+                      <ResultCard
+                        key={r.name}
+                        result={r}
+                        rank={globalRank}
+                        expanded={expanded === r.name}
+                        onToggle={() => setExpanded(expanded === r.name ? null : r.name)}
+                        onRemove={() => removeResult(r.name)}
+                        onView={() => setModalResult(r)}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </>
+        )}
+
+        {/* ── TABLE ── */}
+        {resultTab === 'table' && (
+          <div className="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Score</th>
+                  <th>Fit</th>
+                  <th>Experience</th>
+                  <th>Top Skill</th>
+                  <th>Key Strength</th>
+                  <th>Key Gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.map((r,i) => {
+                  const s = ss(r.score);
+                  return (
+                    <tr key={r.name} onClick={() => setModalResult(r)}>
+                      <td style={{fontWeight:700,color:i<3?'var(--gold)':'var(--ink3)'}}>{i+1}</td>
+                      <td style={{fontWeight:600,whiteSpace:'nowrap'}}>{r.name}</td>
+                      <td style={{fontWeight:800,fontFamily:"'DM Mono',monospace",fontSize:13,color:s.clr}}>{r.score}</td>
+                      <td><span className={`badge-rec ${rc(r.recommendation)}`}>{r.recommendation}</span></td>
+                      <td style={{color:'var(--ink3)'}}>{r.experience_years||'—'}</td>
+                      <td style={{maxWidth:130,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.top_skill||'—'}</td>
+                      <td style={{maxWidth:160,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',color:'var(--green)'}}>
+                        {(r.strengths||[])[0]||'—'}
+                      </td>
+                      <td style={{maxWidth:160,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',color:'var(--red)'}}>
+                        {(r.gaps||[])[0]||'—'}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <div style={{fontSize:10,color:'var(--ink3)',padding:'8px 10px'}}>
+              💡 Click any row to view full resume and AI score explanation
+            </div>
+          </div>
+        )}
+
+        {/* ── SOP ── */}
+        {resultTab === 'sop' && (
+          <>
+            <div className="info-box">
+              <h2>How Helios Resume Scanner Works</h2>
+              <h3>Flow</h3>
+              <p>Paste JD → Add candidates (DOCX, PDF, paste, or CSV) → Click Scan → Get ranked results with AI-scored strengths, gaps and recommendations.</p>
+              <h3>AI Scoring (Gemini 2.0 Flash)</h3>
+              <p>Each resume is compared to your JD across 4 weighted dimensions. Results are ranked 0-100 and grouped by fit band. Click "Why this score?" on any card for a full AI-generated rationale.</p>
+              <h3>Resume Upload</h3>
+              <p>Supports .docx (via mammoth.js) and .pdf (via PDF.js) — text extracted entirely in your browser, nothing uploaded to any server.</p>
+              <h3>CSV Format</h3>
+              <p>Import: name + resume_text (required). If score column is present and > 0, candidate is pre-scored and skips AI. Export includes all fields for audit trail.</p>
+            </div>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:12,flexWrap:'wrap',gap:10}}>
+              <div style={{fontFamily:"'DM Serif Display',serif",fontSize:19}}>Standard Operating Procedure</div>
+              <button className="btn btn-p" onClick={() => {
+                const blob = new Blob([SOP], {type:'text/plain'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href=url; a.download='Helios-SOP-v3.txt'; a.click();
+                URL.revokeObjectURL(url);
+              }}>↓ Download SOP</button>
+            </div>
+            <div style={{background:'#fff',border:'1px solid var(--paper3)',borderRadius:'var(--r-lg)',overflow:'hidden'}}>
+              <div style={{padding:'12px 16px',background:'var(--accent)',color:'#a8c8f0',fontSize:12}}>
+                <strong style={{color:'#fff',fontFamily:"'DM Serif Display',serif"}}>Purpose: </strong>
+                Reduce manual screening time by 70%+ using AI while maintaining consistent evaluation.
+              </div>
+              <div className="sop-pre">{SOP}</div>
+            </div>
+          </>
+        )}
+
+      </div>
+    )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

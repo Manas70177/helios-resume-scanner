@@ -1,0 +1,872 @@
+name,score,recommendation,experience_years,top_skill,strength1,strength2,strength3,gap1,gap2,gap3,summary,resume_text
+Arjun Sharma,96,Strong Fit,5 years,Python + SQL + Tableau,Advanced SQL with CTEs and window functions,"Python (pandas, numpy, scikit-learn) expert",5 years production Tableau dashboards + A/B testing,No Snowflake experience,ML skills intermediate,No dbt exposure,Near-perfect JD match with full technical stack and strong communication.,"Arjun Sharma | Bangalore | arjun.sharma@email.com
+
+EXPERIENCE
+Senior Data Analyst - FinTech Startup (3 years)
+- Advanced SQL: CTEs, window functions on 50M row tables
+- Python (pandas, numpy, seaborn, scikit-learn) for churn modelling
+- Tableau: 15 dashboards, A/B testing (30+ experiments)
+- BigQuery, dbt, Mixpanel
+
+Data Analyst - E-commerce (2 years)
+- Cohort and funnel analysis, weekly leadership presentations
+
+SKILLS: SQL (expert), Python, Tableau, Power BI, BigQuery, dbt, scikit-learn
+EDU: B.Tech CS - IIT Bombay 2018"
+Priya Nair,94,Strong Fit,6 years,Power BI + Snowflake + Python,"Power BI expert - 20 dashboards, 500+ daily users","Snowflake DWH: query optimisation, cost governance",A/B testing: 50+ product experiments,No Tableau (has Power BI),No ML beyond stats,No Mixpanel,"Highly experienced analyst with Power BI, Snowflake, Python and A/B testing.","Priya Nair | Hyderabad | priya.nair@email.com
+
+EXPERIENCE
+Lead Data Analyst - SaaS (3 years)
+- Power BI: 20 dashboards, 500+ daily users
+- Snowflake DWH: query optimisation, data modelling
+- A/B testing: 50+ experiments
+- Python (pandas, statsmodels, seaborn)
+
+Data Analyst - Retail (3 years)
+- SQL CTEs, window functions, automation pipeline
+
+SKILLS: Power BI, SQL (advanced), Python, Snowflake, A/B testing
+EDU: M.Sc Statistics - IIT Madras 2017"
+Vikram Rao,92,Strong Fit,4 years,Tableau + SQL + Python,Tableau expert - 12 production dashboards,SQL advanced on 100M row tables,Python pandas + A/B testing,No cloud DWH,ML minimal,Communication examples limited,Strong technical analyst - Tableau + SQL + Python trifecta.,"Vikram Rao | Chennai | vikram.rao@email.com
+
+EXPERIENCE
+Data Analyst - Telecom (2.5 years)
+- Tableau: 12 dashboards, daily BI reporting
+- SQL expert: CTEs, window functions on 100M rows
+- Python (pandas, numpy): ETL pipelines
+
+Junior Analyst - Consulting (1.5 years)
+- A/B testing, statistical analysis, stakeholder presentations
+
+SKILLS: Tableau, SQL (advanced), Python, A/B testing, statistics
+EDU: B.Tech Statistics - NIT Trichy 2019"
+Sneha Patel,91,Strong Fit,5 years,Python (full stack) + Redshift,"Full Python stack: pandas, numpy, scikit-learn, matplotlib",Redshift complex SQL + data modelling,A/B testing with statistical significance,No Tableau or Power BI,Python viz only,BI tool ramp needed,"Excellent analytical depth - Python + Redshift + A/B, missing BI tool.","Sneha Patel | Pune | sneha.patel@email.com
+
+EXPERIENCE
+Data Scientist/Analyst - HealthTech (3 years)
+- Python: pandas, numpy, scikit-learn, matplotlib, seaborn
+- Redshift: complex SQL, query optimisation
+- A/B testing, statistical significance
+- Weekly presentations to product leadership
+
+Analyst - IT (2 years)
+- SQL analysis, reporting automation
+
+SKILLS: Python (expert), Redshift, SQL, A/B testing, scikit-learn
+EDU: M.Sc Data Science - BITS Pilani 2018"
+Rahul Kumar,90,Strong Fit,4.5 years,Tableau + Power BI + SQL,Both Tableau AND Power BI at production level,"SQL expert: CTEs, window functions, recursive queries",Board-level presentations - stakeholder communication,Python only intermediate,No cloud warehouse,No A/B testing,Dual BI tool expertise + expert SQL - strong generalist analyst.,"Rahul Kumar | Delhi | rahul.k@email.com
+
+EXPERIENCE
+Senior Data Analyst - BFSI (2.5 years)
+- Tableau + Power BI: 1000+ user dashboards
+- SQL: CTEs, window functions, recursive queries
+- Board-level presentations
+
+Data Analyst - Insurance (2 years)
+- SQL reporting, data validation, stakeholder workshops
+
+SKILLS: Tableau, Power BI, SQL (expert), Python (intermediate)
+EDU: B.Sc Mathematics - Delhi Univ 2019"
+Meera Krishnan,88,Strong Fit,4 years,Python + BigQuery + A/B testing,"Python (pandas, numpy, seaborn) + BigQuery",Strong statistical background (M.Sc Stats),A/B testing: 20+ experiments,No Tableau or Power BI,No explicit SQL CTEs,Missing BI tool,Strong analyst with Python + BigQuery + stats but missing BI tool.,"Meera Krishnan | Bangalore | meera.k@email.com
+
+EXPERIENCE
+Product Analyst - EdTech (2 years)
+- Python (pandas, numpy, seaborn): product analytics
+- BigQuery + Amplitude: funnel, retention, DAU/MAU
+- A/B testing: 20+ experiments
+
+Data Analyst - Consulting (2 years)
+- SQL, hypothesis testing, data storytelling
+
+SKILLS: Python, BigQuery, SQL, A/B testing, statistics
+EDU: M.Sc Statistics - ISI Kolkata 2019"
+Anil Desai,86,Strong Fit,3.5 years,SQL expert + Power BI,Power BI expert - enterprise 2000+ users,"SQL mastery: window functions, CTEs on 80M rows",B.Tech + MBA Analytics combination,Python only beginner,No A/B testing,No cloud warehouse,SQL + Power BI expert - Python gap is the main concern.,"Anil Desai | Mumbai | anil.desai@email.com
+
+EXPERIENCE
+BI Analyst - E-commerce (2 years)
+- Power BI: enterprise dashboards, 2000+ users
+- SQL: advanced CTEs, window functions on 80M rows
+- DAX, Power Query
+
+Data Analyst - Retail (1.5 years)
+- SQL, Excel, stakeholder reporting
+
+SKILLS: Power BI (expert), SQL (advanced), DAX, Excel
+EDU: B.Tech CS + MBA Analytics - NMIMS 2019"
+Kavya Menon,85,Strong Fit,3 years,Tableau + Python + A/B testing,"Tableau expert + Python (pandas, scipy, seaborn)",A/B testing with statistical significance,Client-facing stakeholder communication,SQL intermediate,No cloud warehouse,Years slightly below ideal,"Strong analyst - Tableau + Python + A/B testing, SQL needs work.","Kavya Menon | Bangalore | kavya.m@email.com
+
+EXPERIENCE
+Data Analyst - B2B SaaS (2 years)
+- Tableau: client dashboards, embedded analytics
+- Python (pandas, scipy, seaborn): statistical analysis
+- A/B testing: feature experiments, significance testing
+
+Junior Analyst - Startup (1 year)
+- SQL intermediate, Excel, data cleaning
+
+SKILLS: Tableau (expert), Python, A/B testing, SQL (intermediate)
+EDU: B.Sc Statistics - Symbiosis Pune 2020"
+Sanjay Verma,83,Strong Fit,5 years,Power BI + SQL + Snowflake,Power BI enterprise dashboards at scale,Snowflake + SQL advanced - cloud analytics,5 years experience above JD minimum,No Python,No A/B testing,"BI-heavy, less analytical depth",Experienced BI analyst with cloud experience - Python is the critical gap.,"Sanjay Verma | Hyderabad | sanjay.v@email.com
+
+EXPERIENCE
+Senior BI Developer - IT (3 years)
+- Power BI: enterprise dashboards, report server
+- Snowflake: data modelling, SQL optimisation
+- SQL: window functions, stored procedures
+
+Data Analyst - BFSI (2 years)
+- SQL, Power BI, stakeholder communication
+
+SKILLS: Power BI (expert), Snowflake, SQL (advanced), DAX
+EDU: B.Tech IT - VIT Vellore 2018"
+Nisha Agarwal,81,Strong Fit,3 years,Python + Tableau + statistics,"Python (pandas, numpy, matplotlib) + Tableau",M.Sc Statistics - strong academic foundation,Presented findings to non-technical teams,SQL intermediate,No A/B testing explicitly,No cloud warehouse,"Well-rounded analyst - stats + Python + Tableau, SQL needs confirmation.","Nisha Agarwal | Jaipur | nisha.a@email.com
+
+EXPERIENCE
+Data Analyst - Healthcare (2 years)
+- Tableau: clinical dashboards, KPI reporting
+- Python (pandas, numpy, matplotlib): analysis
+- Statistical analysis: regression, hypothesis testing
+
+Junior Analyst - Consulting (1 year)
+- SQL intermediate, Excel, data cleaning
+
+SKILLS: Python, Tableau, statistics, SQL (intermediate), Excel
+EDU: M.Sc Statistics - Rajasthan Univ 2020"
+Rohan Joshi,87,Strong Fit,4 years,SQL + Python + Power BI,SQL CTEs and window functions mastered,Python pandas and matplotlib for automation,Power BI dashboards for retail analytics,No Snowflake or BigQuery,A/B testing exposure limited,Scikit-learn beginner,Solid all-rounder with SQL and BI skills and growing Python depth.,"Rohan Joshi | Bangalore | rohan.joshi@email.com
+
+EXPERIENCE
+Data Analyst - Retail (2.5 years)
+- SQL: CTEs, window functions, optimisation
+- Power BI: dashboards for 300+ store managers
+- Python (pandas, matplotlib): automated reporting
+
+Analyst - FMCG (1.5 years)
+- Excel, SQL, stakeholder coordination
+
+SKILLS: SQL, Power BI, Python, Excel, statistics
+EDU: B.Tech CS - BITS Pilani 2019"
+Ananya Bose,89,Strong Fit,5 years,Tableau + BigQuery + Python,Tableau certified with 40+ production dashboards,BigQuery advanced SQL and data modelling,Python scikit-learn for predictive analytics,No Snowflake,Communication could be stronger,No Redshift,Strong senior analyst with cloud BI stack and ML capabilities.,"Ananya Bose | Mumbai | ananya.bose@email.com
+
+EXPERIENCE
+Senior Analyst - Insurance (3 years)
+- Tableau: 40+ dashboards, Tableau Server admin
+- BigQuery: advanced SQL, data modelling
+- Python (pandas, scikit-learn): churn prediction
+
+Data Analyst - Consulting (2 years)
+- A/B testing, statistical reporting
+
+SKILLS: Tableau, BigQuery, Python, SQL, scikit-learn
+EDU: B.Tech CS - IIT Delhi 2018"
+Karan Mehta,84,Strong Fit,3.5 years,SQL expert + Tableau + statistics,SQL window functions on 200M row datasets,Tableau executive dashboards,"Statistics: regression, hypothesis testing",Python intermediate only,No cloud DWH,Limited ML exposure,SQL and Tableau expert with strong statistics - Python is growth area.,"Karan Mehta | Pune | karan.mehta@email.com
+
+EXPERIENCE
+Data Analyst - E-commerce (2 years)
+- SQL: window functions, CTEs on 200M rows
+- Tableau: executive dashboards, self-service portal
+- Statistical analysis: regression, forecasting
+
+Junior Analyst - IT (1.5 years)
+- Python (intermediate), Excel, reporting
+
+SKILLS: SQL (expert), Tableau, Python (intermediate), statistics
+EDU: M.Sc Statistics - Pune Univ 2020"
+Divya Nair,93,Strong Fit,6 years,Python + Redshift + Tableau,6 years analytics with full Python and SQL stack,Redshift + Tableau production combination,Led team of 3 junior analysts,No Power BI,No dbt,No Mixpanel,Highly experienced senior analyst with team leadership and full stack.,"Divya Nair | Chennai | divya.nair@email.com
+
+EXPERIENCE
+Lead Analyst - HealthTech (3 years)
+- Python full stack + Redshift advanced SQL
+- Tableau: 25 production dashboards
+- A/B testing programme lead, managed 3 junior analysts
+
+Data Analyst - FMCG (3 years)
+- SQL, Python, stats reporting
+
+SKILLS: Python (expert), Redshift, Tableau, SQL, A/B testing
+EDU: M.Sc Data Analytics - IIM Bangalore 2017"
+Suresh Iyer,82,Strong Fit,4 years,Power BI + SQL + Python,Power BI with DAX and Power Query expertise,SQL advanced with performance tuning,Python pandas for ETL and automation,No A/B testing,No cloud warehouse,Tableau not listed,Strong BI analyst with Python automation skills and solid SQL.,"Suresh Iyer | Delhi | suresh.iyer@email.com
+
+EXPERIENCE
+BI Developer - BFSI (2.5 years)
+- Power BI: DAX, Power Query, enterprise dashboards
+- SQL advanced: stored procedures, performance tuning
+- Python (pandas): ETL automation
+
+Analyst - IT (1.5 years)
+- SQL, Excel, basic Python
+
+SKILLS: Power BI, SQL (advanced), Python, DAX, Excel
+EDU: B.Tech IT - NIT Calicut 2019"
+Pooja Sharma,90,Strong Fit,5 years,Tableau + Python + A/B testing,Tableau Server admin and dashboard expert,Python full stack with statsmodels,A/B testing framework lead (60+ experiments),No Snowflake,No dbt,Scikit-learn only basic,"Experienced product analyst with Tableau, Python and A/B testing expertise.","Pooja Sharma | Hyderabad | pooja.sharma@email.com
+
+EXPERIENCE
+Product Analyst - SaaS (3 years)
+- Tableau Server admin: 30 dashboards
+- Python (pandas, statsmodels, seaborn)
+- A/B testing lead: 60+ experiments
+
+Data Analyst - Startup (2 years)
+- SQL, Python, hypothesis testing
+
+SKILLS: Tableau (expert), Python, SQL, A/B testing
+EDU: B.Sc Statistics - IIT Bombay 2018"
+Varun Pillai,86,Strong Fit,4 years,SQL + Tableau + statistics,SQL expert with CTE and window function mastery,Tableau production dashboards for finance,Strong statistics M.Sc background,Python intermediate,No cloud DWH,No A/B testing,Finance domain analyst with strong SQL and Tableau - Python is the gap.,"Varun Pillai | Mumbai | varun.pillai@email.com
+
+EXPERIENCE
+Finance Analyst - Banking (2.5 years)
+- SQL expert: CTEs, window functions on banking datasets
+- Tableau: financial and regulatory reporting dashboards
+- Statistics: regression, forecasting, risk modelling
+
+Junior Analyst - Consulting (1.5 years)
+- SQL, Excel, Python (intermediate)
+
+SKILLS: SQL (expert), Tableau, Python (intermediate), statistics
+EDU: M.Sc Statistics - IGIDR Mumbai 2019"
+Asha Menon,88,Strong Fit,4.5 years,Python + SQL + BigQuery,Python pandas and numpy expert with BigQuery,SQL advanced with optimisation experience,Good stakeholder communication in startup,No Tableau or Power BI,No formal A/B testing,Visualisation via Python only,Strong analyst with Python and cloud SQL - needs BI tool.,"Asha Menon | Bangalore | asha.menon@email.com
+
+EXPERIENCE
+Data Analyst - E-commerce Startup (3 years)
+- Python (pandas, numpy, plotly): full analytics stack
+- BigQuery: advanced SQL, pipeline management
+- CEO and product team reporting weekly
+
+Analyst - IT (1.5 years)
+- SQL, Excel, Python basics
+
+SKILLS: Python (expert), BigQuery, SQL (advanced), plotly
+EDU: B.Tech CS - NIT Surathkal 2019"
+Nikhil Sinha,84,Strong Fit,3.5 years,Tableau + A/B testing + Python,Tableau expert with self-service portal,A/B testing with statistical power calculations,"Python (pandas, seaborn) analysis",SQL intermediate,No cloud warehouse,No ML,Strong product analyst with Tableau and A/B testing expertise.,"Nikhil Sinha | Pune | nikhil.sinha@email.com
+
+EXPERIENCE
+Product Analyst - EdTech (2.5 years)
+- Tableau: self-service portal for 200 users
+- A/B testing: power calculations, experiment design
+- Python (pandas, seaborn): analysis automation
+
+Junior Analyst - Startup (1 year)
+- SQL intermediate, Excel
+
+SKILLS: Tableau (expert), A/B testing, Python, SQL (intermediate)
+EDU: B.Sc CS - Symbiosis Pune 2020"
+Lakshmi Iyer,91,Strong Fit,5 years,Power BI + Python + Snowflake,Power BI and Snowflake cloud analytics expert,"Python (pandas, scikit-learn) for ML-adjacent work",5 years with C-level stakeholder management,No Tableau,A/B testing not explicit,No dbt,"Senior cloud analytics professional with BI, Python and ML capabilities.","Lakshmi Iyer | Delhi | lakshmi.iyer@email.com
+
+EXPERIENCE
+Senior Analyst - BFSI (3 years)
+- Power BI: enterprise reports, Snowflake backend
+- Python (pandas, scikit-learn): risk scoring models
+- SQL: Snowflake-optimised, advanced data modelling
+- Quarterly CFO presentations
+
+Data Analyst - Insurance (2 years)
+- SQL, Power BI, statistical reporting
+
+SKILLS: Power BI (expert), Snowflake, Python, SQL, scikit-learn
+EDU: MBA Analytics - IIM Calcutta 2018"
+Ravi Iyer,75,Moderate Fit,3 years,SQL + Power BI,SQL solid intermediate-advanced,Power BI production experience,Good business domain knowledge,Python only basic,No A/B testing,No cloud warehouse,Good BI analyst - Python and A/B testing gaps prevent strong fit.,"Ravi Iyer | Chennai | ravi.iyer2@email.com
+
+EXPERIENCE
+BI Analyst - Manufacturing (3 years)
+- Power BI: operational dashboards
+- SQL intermediate: joins, aggregations, basic CTEs
+- Excel: advanced pivot tables
+
+SKILLS: Power BI, SQL (intermediate), Excel, Python (basic)
+EDU: B.E. CS - Anna Univ 2020"
+Deepak Singh,70,Moderate Fit,3.5 years,SQL + Power BI basic,SQL intermediate-advanced,Operations domain knowledge,3.5 years experience,Power BI only basic,No Python,No A/B testing,"Operations analyst pivoting to data - SQL strong, analytics light.","Deepak Singh | Lucknow | deepak.singh@email.com
+
+EXPERIENCE
+Ops Analyst - Logistics (3.5 years)
+- SQL: joins, window functions basic
+- Power BI basic: simple dashboards
+- Excel: advanced reporting
+
+SKILLS: SQL, Power BI (basic), Excel
+EDU: BBA - Lucknow Univ 2020"
+Preethi Nambiar,73,Moderate Fit,2 years,Python + statistics,"Python (pandas, seaborn)",Strong statistics background,Academic research published,No BI tool,SQL basic only,No industry analytics experience,"Academic statistician - strong foundation, lacks industry exposure.","Preethi Nambiar | Kochi | preethi.nambiar@email.com
+
+EXPERIENCE
+Research Analyst - University (2 years)
+- Python (pandas, seaborn, scipy): research
+- R: modelling and academic publication
+- Statistics: regression, ANOVA
+
+SKILLS: Python, R, statistics, SQL (basic)
+EDU: M.Sc Statistics - Kerala Univ 2022"
+Amit Tiwari,72,Moderate Fit,3 years,Tableau + SQL,Tableau dashboards in production,SQL solid,Good stakeholder communication,Python beginner,No A/B testing,No cloud warehouse,"BI analyst - Tableau strong, Python and analytics depth needed.","Amit Tiwari | Mumbai | amit.tiwari@email.com
+
+EXPERIENCE
+BI Analyst - FMCG (3 years)
+- Tableau: production dashboards
+- SQL: joins, aggregations, reporting
+- Stakeholder analytics reviews
+
+SKILLS: Tableau, SQL, Excel, Python (beginner)
+EDU: B.Sc IT - Mumbai Univ 2020"
+Swathi Reddy,68,Moderate Fit,2.5 years,SQL + Python basics,SQL solid for reporting,Python basics (pandas) learning,Eager - multiple upskilling courses,Python not production-ready,No BI tool,No A/B testing,Strong SQL analyst with Python in progress - BI tool missing.,"Swathi Reddy | Hyderabad | swathi.reddy@email.com
+
+EXPERIENCE
+Data Analyst - IT (2.5 years)
+- SQL advanced: complex joins, stored procedures
+- Excel: advanced pivot tables
+- Python (learning): 3 courses completed
+
+SKILLS: SQL (advanced), Excel, Python (learning)
+EDU: B.Tech IT - JNTU 2021"
+Manish Gupta,66,Moderate Fit,4 years,Power BI + Excel,Power BI experience,4 years BFSI domain,Stakeholder management,Python minimal,SQL intermediate only,No statistical depth,BFSI analyst with BI - limited analytics depth vs JD.,"Manish Gupta | Delhi | manish.gupta@email.com
+
+EXPERIENCE
+BFSI Analyst - Banking (4 years)
+- Power BI: financial dashboards
+- SQL: basic joins and aggregations
+- Excel: advanced financial modelling
+
+SKILLS: Power BI, SQL (intermediate), Excel
+EDU: MBA Finance - Delhi Univ 2019"
+Rohit Pillai,62,Moderate Fit,2 years,Tableau basic + SQL,Tableau learning in progress,SQL intermediate,Good communication,Python beginner,Tableau only basic,No A/B testing,Developing analyst - skills still maturing for this JD.,"Rohit Pillai | Kochi | rohit.pillai@email.com
+
+EXPERIENCE
+Junior Analyst - IT (2 years)
+- Tableau basic: simple dashboards
+- SQL: joins, aggregations
+- Excel: pivot tables
+
+SKILLS: Tableau (basic), SQL, Excel, Python (beginner)
+EDU: B.Sc CS - MG Univ 2022"
+Neha Joshi,63,Moderate Fit,3 years,SQL + Excel,SQL solid for reporting,Excel advanced,E-commerce domain,No Python,No BI tool,No A/B testing,"E-commerce analyst - SQL and Excel strong, missing most JD tech.","Neha Joshi | Mumbai | neha.joshi@email.com
+
+EXPERIENCE
+E-commerce Analyst - Retail (3 years)
+- SQL: joins, subqueries, reporting
+- Excel: advanced pivot tables
+- Google Analytics: traffic reporting
+
+SKILLS: SQL, Excel (advanced), Google Analytics
+EDU: B.Com - Symbiosis 2021"
+Vivek Nanda,64,Moderate Fit,3 years,Python (basic) + SQL,SQL intermediate-advanced,Python basics starting,Finance domain knowledge,Python not production-ready,No BI tool,No A/B testing,Finance professional building analytics skills - not yet ready.,"Vivek Nanda | Delhi | vivek.nanda@email.com
+
+EXPERIENCE
+Finance Analyst - Corporate (3 years)
+- SQL: reporting, joins, financial extraction
+- Excel: advanced financial modelling
+- Python (beginner): started learning pandas
+
+SKILLS: SQL, Excel (expert), Python (beginner)
+EDU: CA + B.Com - ICAI 2020"
+Girish Menon,61,Moderate Fit,3.5 years,SQL + Google Analytics,SQL solid,Google Analytics experience,Marketing domain analytics,No Python,No BI tool,Marketing vs data analytics,Marketing analyst with SQL - domain mismatch and missing core tools.,"Girish Menon | Bangalore | girish.menon@email.com
+
+EXPERIENCE
+Marketing Analyst - Agency (3.5 years)
+- Google Analytics, GA4: funnel analysis
+- SQL: intermediate reporting
+- Excel: campaign tracking
+
+SKILLS: Google Analytics, SQL, Excel
+EDU: MBA Marketing - TAPMI 2019"
+Rohan Mehta,58,Moderate Fit,2 years,SQL (basic) + Excel,SQL joins and aggregations,Excel advanced,Committed to upskilling,SQL only basic - no CTEs,Python beginner,No A/B testing,Willing learner with foundational skills but below JD requirements.,"Rohan Mehta | Pune | rohan.mehta@email.com
+
+EXPERIENCE
+Junior Analyst - FinServ (2 years)
+- SQL: joins, GROUP BY, basic subqueries
+- Excel: advanced pivot tables
+- Power BI basic
+
+SKILLS: SQL (basic), Excel, Power BI (basic), Python (learning)
+EDU: B.Com - Symbiosis 2022"
+Simran Kaur,53,Moderate Fit,1 year,Python basics + stats,Python basics (pandas),M.Sc Statistics foundation,GitHub portfolio building,Only 1 year experience,No BI tools,Portfolio not in production,Recent masters grad - right academic background but needs experience.,"Simran Kaur | Chandigarh | simran.kaur@email.com
+
+EXPERIENCE
+Junior Analyst (intern to fulltime) - 1 year
+- Python (pandas, matplotlib): GitHub projects
+- SQL basic: data extraction
+- Statistics from M.Sc
+
+SKILLS: Python (basics), statistics, SQL (basic)
+EDU: M.Sc Statistics - Panjab Univ 2024"
+Tanvi Kapoor,76,Moderate Fit,3.5 years,Python + SQL + statistics,"Python (pandas, matplotlib) with good statistics",SQL intermediate-advanced,M.Sc Applied Mathematics,No BI tool,No A/B testing formally,No cloud warehouse,Quantitatively strong analyst - missing BI tools.,"Tanvi Kapoor | Pune | tanvi.kapoor@email.com
+
+EXPERIENCE
+Data Analyst - Pharma (2 years)
+- Python (pandas, matplotlib, scipy): clinical data analysis
+- SQL: complex queries for research
+- Statistics: advanced modelling
+
+Junior Analyst - IT (1.5 years)
+- SQL, Excel, basic Python
+
+SKILLS: Python, SQL (intermediate), statistics, Excel
+EDU: M.Sc Applied Maths - Pune Univ 2020"
+Shreya Mishra,77,Moderate Fit,3 years,SQL + statistics + Excel,SQL solid with statistical analysis,"Statistics: regression, hypothesis testing",3 years consulting experience,No Python,No BI tool,No A/B testing,Consulting analyst with SQL and statistics - missing Python and BI.,"Shreya Mishra | Bangalore | shreya.mishra@email.com
+
+EXPERIENCE
+Consultant Analyst - Big 4 (3 years)
+- SQL: complex queries for client reporting
+- Statistics: regression, hypothesis testing
+- Excel: advanced financial and statistical modelling
+
+SKILLS: SQL, statistics, Excel (expert), R (basic)
+EDU: B.Sc Statistics - Delhi Univ 2021"
+Aakash Verma,74,Moderate Fit,2.5 years,Tableau + Python basics,Tableau dashboards for marketing,Python basics with pandas,Good presentation skills,SQL only basic,No A/B testing,Python not production-ready,Marketing analyst with Tableau - SQL and Python need development.,"Aakash Verma | Delhi | aakash.verma@email.com
+
+EXPERIENCE
+Marketing Analyst - D2C (2.5 years)
+- Tableau: marketing dashboards
+- Python basics (pandas): ad-hoc exploration
+- Google Analytics
+
+SKILLS: Tableau, Python (basics), SQL (basic), Google Analytics
+EDU: B.Com - Delhi Univ 2021"
+Farhan Sheikh,69,Moderate Fit,2.5 years,Power BI + SQL,Power BI dashboards for sales,SQL intermediate,Good business communication,Python minimal,No A/B testing,No statistical analysis,Sales BI analyst with good tools but limited analytical depth.,"Farhan Sheikh | Mumbai | farhan.sheikh@email.com
+
+EXPERIENCE
+Sales Analyst - FMCG (2.5 years)
+- Power BI: sales dashboards, territory analysis
+- SQL: sales data extraction
+- Excel: forecasting models
+
+SKILLS: Power BI, SQL (intermediate), Excel
+EDU: BBA - SP Jain 2021"
+Divya Krishnamurthy,71,Moderate Fit,3 years,Python + A/B testing,Python pandas + A/B testing,Strong statistical background,Good analytical thinking,No BI tool,SQL intermediate,No cloud warehouse,Good analytical profile - BI tool gap is key.,"Divya Krishnamurthy | Bangalore | divya.krishna@email.com
+
+EXPERIENCE
+Product Analyst - SaaS (3 years)
+- Python (pandas, scipy): funnel and cohort analysis
+- A/B testing: experiment design and reporting
+- SQL: joins, GROUP BY, basic window functions
+
+SKILLS: Python, A/B testing, SQL (intermediate), statistics
+EDU: B.Tech CS - PES Univ 2021"
+Sonal Jain,72,Moderate Fit,2 years,Tableau + Excel,Tableau intermediate dashboards,Good communication skills,Enrolled in SQL course,SQL only basic,No Python,No statistical analysis,Communication-strong analyst with Tableau but limited technical depth.,"Sonal Jain | Jaipur | sonal.jain@email.com
+
+EXPERIENCE
+Business Analyst - Retail (2 years)
+- Tableau: business performance dashboards
+- Excel: advanced reporting
+- Stakeholder communication
+
+SKILLS: Tableau (intermediate), Excel, SQL (basic, learning)
+EDU: MBA - Jaipur National Univ 2022"
+Madhav Rao,67,Moderate Fit,4 years,SQL + Excel + operations,SQL solid for operations reporting,4 years operations domain,Strong Excel skills,No Python,No BI tool,Operations not data analytics,Operations professional with SQL - domain mismatch.,"Madhav Rao | Hyderabad | madhav.rao@email.com
+
+EXPERIENCE
+Ops Analyst - Logistics (4 years)
+- SQL: operations data and reporting
+- Excel: advanced process tracking
+- Operations analytics: routing, inventory
+
+SKILLS: SQL, Excel (advanced), operations domain
+EDU: B.E. Mechanical - JNTU 2019"
+Tanmay Bose,78,Moderate Fit,3 years,SQL + Tableau + Python basics,Tableau dashboards for ops team,SQL solid intermediate,Python (pandas): started 6 months ago,Python not production-ready,No A/B testing,No cloud warehouse,Growing analyst with Tableau and SQL - Python development needed.,"Tanmay Bose | Kolkata | tanmay.bose@email.com
+
+EXPERIENCE
+Data Analyst - Manufacturing (3 years)
+- Tableau: ops dashboards for plant management
+- SQL: complex joins, aggregations, CTEs learning
+- Python (pandas): started 6 months ago
+
+SKILLS: Tableau, SQL (intermediate), Python (beginner), Excel
+EDU: B.Tech CS - Jadavpur Univ 2021"
+Richa Tiwari,79,Moderate Fit,3.5 years,SQL advanced + Python + statistics,SQL advanced with CTEs and optimisation,"Python (pandas, scipy) for analysis",Statistics: hypothesis testing and regression,No BI tool,No cloud warehouse,No A/B testing formally,Quantitatively strong analyst with SQL and Python - missing BI tool.,"Richa Tiwari | Lucknow | richa.tiwari@email.com
+
+EXPERIENCE
+Data Analyst - Healthcare (3.5 years)
+- SQL: advanced CTEs, window functions, stored procedures
+- Python (pandas, scipy): statistical analysis
+- Statistics: regression, ANOVA, hypothesis testing
+
+SKILLS: SQL (advanced), Python, statistics, Excel
+EDU: M.Sc Statistics - Lucknow Univ 2020"
+Preeti Saxena,59,Moderate Fit,2 years,Excel + HRIS,HR data reporting and HRIS,Excel proficiency,MBA analytics electives,"No SQL, Python or BI tools",HR domain minimal technical,No analytical depth beyond Excel,HR professional - significant reskilling needed.,"Preeti Saxena | Delhi | preeti.saxena@email.com
+
+EXPERIENCE
+HR Analyst - Corporate (2 years)
+- HRIS (Workday): employee data
+- Excel: HR metrics, pivot tables
+- MBA analytics electives
+
+SKILLS: Excel, HRIS, basic reporting
+EDU: MBA HR - XIMB 2022"
+Piyush Sharma,57,Moderate Fit,2 years,SQL + Excel + Power BI basic,SQL intermediate for reporting,Excel advanced,Power BI basics,Python beginner,No A/B testing,No statistics,Junior analyst - needs Python and analytical depth development.,"Piyush Sharma | Delhi | piyush.sharma@email.com
+
+EXPERIENCE
+Junior Analyst - Retail (2 years)
+- SQL: joins, GROUP BY, subqueries
+- Excel: advanced pivot tables
+- Power BI basic: simple charts
+
+SKILLS: SQL (intermediate), Excel, Power BI (basic)
+EDU: B.Com - Delhi Univ 2022"
+Rahul Verma,35,Not Fit,2.5 years (SWE),Node.js + SQL (backend),Strong SQL from backend engineering,Python scripting,CS fundamentals,SWE not data analyst,"No BI, stats or A/B testing",No business analytics,Backend engineer - wrong role type.,"Rahul Verma | Delhi | rahul.verma@email.com
+
+EXPERIENCE
+Software Engineer - WebDev (2.5 years)
+- Node.js, PostgreSQL, Python scripting
+- REST API development
+
+SKILLS: Node.js, PostgreSQL, Python, JavaScript
+EDU: B.Sc CS - Delhi Univ 2021"
+Vikram Nair,22,Not Fit,4.5 years (Marketing),Google Analytics + Excel,Google Analytics digital exposure,Excel for campaign reporting,Strong communication,"No SQL, no Python",Marketing vs analytics,No statistical analysis,Marketing manager - zero overlap with DA requirements.,"Vikram Nair | Mumbai | vikram.nair@email.com
+
+EXPERIENCE
+Marketing Manager - Agency (4.5 years)
+- Google Analytics, social media management
+- Excel: campaign tracking
+
+SKILLS: Google Analytics, Excel, SEO, social media
+EDU: MBA Marketing - SP Jain 2018"
+Aditya Kapoor,18,Not Fit,3 years (Content),Content writing,Strong writing and communication,Research skills,Basic Excel,No technical skills,Content - no overlap,No quantitative background,Content professional - no relevant technical skills.,"Aditya Kapoor | Delhi | aditya.kapoor@email.com
+
+EXPERIENCE
+Content Manager - Digital Agency (3 years)
+- Content writing, SEO, social media
+- Basic Excel for content metrics
+
+SKILLS: Content, SEO, Excel (basic)
+EDU: B.A. English - Delhi Univ 2021"
+Sunita Jain,15,Not Fit,5 years (Customer Service),CRM + Excel basic,CRM data entry,Customer data familiarity,Interpersonal skills,Customer service - no analytics,"No SQL, Python or BI",No quantitative experience,Customer service professional - no analytics background.,"Sunita Jain | Jaipur | sunita.jain@email.com
+
+EXPERIENCE
+Customer Service Lead - BPO (5 years)
+- CRM (Zendesk): data entry and reporting
+- Excel: basic call metrics
+
+SKILLS: CRM, Excel (basic), customer service
+EDU: B.Com - Rajasthan Univ 2019"
+Pankaj Mishra,12,Not Fit,2 years (Sales),Salesforce + Excel,Salesforce CRM,Excel reporting,Career change motivation,"No SQL, Python, BI tools",Sales - no analytics overlap,Needs 12-18 months training,Sales professional - zero analytics background.,"Pankaj Mishra | Patna | pankaj.mishra@email.com
+
+EXPERIENCE
+Sales Executive - FMCG (2 years)
+- Salesforce: CRM and pipeline
+- Excel basic: sales tracking
+
+SKILLS: Salesforce, Excel (basic), sales
+EDU: B.Com - Patna Univ 2022"
+Rajesh Pillai,5,Not Fit,Fresher,None relevant,Eager to learn,B.A. completed,Willingness,No relevant skills at all,Arts fresher - 0% JD match,Full 2-year reskilling needed,Arts fresher - completely mismatched.,"Rajesh Pillai | Kochi | rajesh.pillai@email.com
+
+FRESHER
+B.A. History - Kerala Univ 2024
+Willing to learn any role.
+
+SKILLS: MS Word (basic), communication
+HOBBIES: Cricket, music"
+Vijay Sharma,38,Not Fit,3 years (DevOps),AWS + Python scripting,Python scripting and automation,AWS cloud infrastructure,Technical aptitude,DevOps not data analytics,"No BI, SQL analysis, statistics",No business analytics,"DevOps engineer - wrong role, no analytics track.","Vijay Sharma | Bangalore | vijay.sharma@email.com
+
+EXPERIENCE
+DevOps Engineer - IT (3 years)
+- AWS: EC2, S3, CloudWatch
+- Python: automation and CI/CD
+- Docker, Kubernetes
+
+SKILLS: AWS, Python (scripting), Docker, Linux
+EDU: B.Tech CS - VIT 2021"
+Rajan Tiwari,33,Not Fit,5 years (Project Management),JIRA + Excel + PMP,PMP certified,Excel for project tracking,Cross-functional experience,"No SQL, Python or BI",PM not analytics,No data analysis experience,"Project manager - wrong function, no analytics background.","Rajan Tiwari | Hyderabad | rajan.tiwari@email.com
+
+EXPERIENCE
+Project Manager - IT Consulting (5 years)
+- JIRA: sprint management
+- Excel: project plans and tracking
+- PMP Certified
+
+SKILLS: JIRA, Excel, MS Project, PMP
+EDU: MBA - ICFAI 2018"
+Kritika Singh,42,Not Fit,2 years (QA),SQL basic + Excel + QA,SQL basic from QA work,Excel for defect tracking,Attention to detail,QA not analytics,"No Python, BI, statistics",No business analytics,"QA analyst - wrong function, needs full analytics development.","Kritika Singh | Pune | kritika.singh@email.com
+
+EXPERIENCE
+QA Analyst - IT (2 years)
+- SQL basic: test data queries
+- Excel: defect tracking
+- Selenium, JIRA
+
+SKILLS: SQL (basic), Excel, Selenium, JIRA
+EDU: B.Tech CS - Pune Univ 2022"
+Geeta Patel,14,Not Fit,3 years (Receptionist),MS Office + communication,Communication skills,MS Office,Customer service,No technical skills,Receptionist - no analytics,No quantitative background,Receptionist - completely mismatched application.,"Geeta Patel | Ahmedabad | geeta.patel@email.com
+
+EXPERIENCE
+Receptionist - Corporate (3 years)
+- MS Office: emails, scheduling
+- Excel basic: schedules
+
+SKILLS: MS Office, communication
+EDU: B.A. - Gujarat Univ 2021"
+Shyam Sundar,30,Not Fit,3 years (Finance Ops),Excel + finance domain,Excel for finance ops,Finance domain knowledge,Corporate experience,"No SQL, Python or BI",Finance ops not analytics,No statistical skills,Finance ops professional - needs complete reskilling.,"Shyam Sundar | Delhi | shyam.sundar@email.com
+
+EXPERIENCE
+Finance Ops - Corporate (3 years)
+- Excel: accounts payable/receivable
+- SAP FI: financial transactions
+- MIS basic reports
+
+SKILLS: Excel (advanced), SAP FI, finance domain
+EDU: B.Com - Delhi Univ 2021"
+Madhuri Shetty,23,Not Fit,4 years (Journalism),Research + writing,Research and analytical writing,Data journalism basics,Storytelling skills,"No SQL, Python or BI",Journalism not analytics,No quantitative skills,Journalist - no technical analytics skills.,"Madhuri Shetty | Mumbai | madhuri.shetty@email.com
+
+EXPERIENCE
+Journalist - News Agency (4 years)
+- Data journalism: basic charts
+- Research: government data
+- Writing: analytical pieces
+
+SKILLS: Research, writing, communication
+EDU: B.A. Journalism - Manipal 2019"
+Meena Sharma,28,Not Fit,3 years (Teacher),MS Office + teaching,Communication skills,Excel for grade tracking,Organised and methodical,"No SQL, Python or BI",Education - no analytics,No quantitative skills,Teacher seeking career change - complete reskilling needed.,"Meena Sharma | Jaipur | meena.sharma@email.com
+
+EXPERIENCE
+High School Teacher - CBSE (3 years)
+- Maths and science teacher
+- Excel: grade tracking
+
+SKILLS: Teaching, Excel (basic), MS Office
+EDU: B.Ed - Rajasthan Univ 2021"
+Harish Kumar,47,Not Fit,2 years (Data Entry),Excel + SQL basic,Excel advanced for data ops,SQL basic for extraction,High accuracy data processing,Data entry not analytics,"No Python, BI, statistics",Operational role only,Data entry specialist - no analytics work in current role.,"Harish Kumar | Noida | harish.kumar@email.com
+
+EXPERIENCE
+Data Entry Specialist - BPO (2 years)
+- Excel: data entry, cleaning
+- SQL basic: extraction queries
+- High-volume data processing
+
+SKILLS: Excel (advanced), SQL (basic), data entry
+EDU: B.Sc CS - Noida Univ 2022"
+Kiran Bhat,40,Not Fit,2 years (Support),SQL basic + CRM,SQL basic from support work,CRM data management,Technical customer exposure,Support not analytics,"No Python, BI, statistics",No analytical modelling,Support analyst - wrong track for data analyst role.,"Kiran Bhat | Bangalore | kiran.bhat@email.com
+
+EXPERIENCE
+Support Analyst - SaaS (2 years)
+- SQL basic: ticket data queries
+- Salesforce: customer data
+- Excel: support metrics
+
+SKILLS: SQL (basic), Salesforce, Excel
+EDU: B.Sc CS - Bangalore Univ 2022"
+Sameer Shah,21,Not Fit,4 years (Warehouse),WMS + Excel,Warehouse ops expertise,Excel inventory reporting,WMS proficiency,No analytics skills at all,Warehouse ops not analytics,"No SQL, Python or BI",Warehouse professional - completely mismatched.,"Sameer Shah | Surat | sameer.shah@email.com
+
+EXPERIENCE
+Warehouse Supervisor - E-commerce (4 years)
+- WMS: warehouse management
+- Excel: inventory tracking
+- Team management: 20 staff
+
+SKILLS: WMS, Excel (basic), inventory management
+EDU: B.Com - Gujarat Univ 2019"
+Raj Malhotra,29,Not Fit,5 years (Retail Manager),Excel + retail domain,Retail management experience,Excel for sales tracking,POS analytics experience,"No SQL, Python or BI",Retail management not analytics,No statistical skills,"Retail manager - operational role, no analytics track.","Raj Malhotra | Chandigarh | raj.malhotra@email.com
+
+EXPERIENCE
+Retail Store Manager - Chain (5 years)
+- Excel: inventory and sales reporting
+- POS: sales data extraction
+- Team management: 15 people
+
+SKILLS: Excel, POS, retail domain
+EDU: BBA - Chandigarh Univ 2018"
+Amitkumar Pandey,37,Not Fit,3 years (BPO),Excel + CRM + basic reporting,3 years BPO reporting,Excel for ops metrics,CRM experience,BPO ops not analytics,"No SQL depth, BI, Python",No statistical skills,BPO analyst - significant gap from data analyst requirements.,"Amitkumar Pandey | Bhopal | amit.pandey@email.com
+
+EXPERIENCE
+BPO Ops Analyst - Call Centre (3 years)
+- Excel: daily reporting and KPIs
+- CRM (Freshdesk): customer data
+- SQL basic: SELECT queries only
+
+SKILLS: Excel, CRM, SQL (very basic)
+EDU: B.Com - Bhopal Univ 2021"
+Nandini Verma,87,Strong Fit,4 years,SQL + Tableau + Python + A/B testing,SQL expert with Snowflake DWH,Tableau production + Python analytics,A/B testing: 35+ experiments with rigorous methodology,No ML experience,No dbt,Power BI not used,"Well-rounded analyst with SQL, Tableau, Python and A/B testing.","Nandini Verma | Bangalore | nandini.verma@email.com
+
+EXPERIENCE
+Data Analyst - E-commerce (4 years)
+- SQL: Snowflake, CTEs, window functions, query tuning
+- Tableau: production dashboards for product and ops
+- Python (pandas, scipy): ad-hoc analysis and automation
+- A/B testing: 35+ experiments with statistical methodology
+
+SKILLS: SQL (expert), Tableau, Python, Snowflake, A/B testing
+EDU: B.Tech CS - NIT Warangal 2019"
+Priti Malhotra,83,Strong Fit,4 years,Python + Power BI + SQL,Python full analytics stack with statsmodels,Power BI expert with 15 production reports,A/B testing: 25+ experiments,No Snowflake or BigQuery,Tableau not used,No ML beyond stats,"Strong product analyst with Python, Power BI and A/B testing.","Priti Malhotra | Delhi | priti.malhotra@email.com
+
+EXPERIENCE
+Product Analyst - Fintech (4 years)
+- Python (pandas, statsmodels, seaborn): analysis
+- Power BI: 15 production dashboards
+- A/B testing: 25+ experiments
+- SQL: CTEs, window functions
+
+SKILLS: Python, Power BI (expert), SQL (advanced), A/B testing
+EDU: B.Sc Mathematics - IIT Kanpur 2019"
+Zara Khan,85,Strong Fit,3.5 years,Python + BigQuery + Tableau,"Python (pandas, scikit-learn) for ML-adjacent analytics",BigQuery SQL expert with data modelling,Tableau dashboards + strong stakeholder communication,No Snowflake or Redshift,A/B testing limited,Power BI not used,"Strong analyst with Python, BigQuery and Tableau.","Zara Khan | Hyderabad | zara.khan@email.com
+
+EXPERIENCE
+Data Analyst - EdTech (3.5 years)
+- Python (pandas, scikit-learn, seaborn): analytics and modelling
+- BigQuery: expert SQL, data modelling
+- Tableau: 18 production dashboards
+- Weekly VP Product reviews
+
+SKILLS: Python, BigQuery, Tableau, SQL (expert), scikit-learn
+EDU: B.Tech CS - IIIT Hyderabad 2020"
+Sundar Krishnamoorthy,80,Strong Fit,4 years,SQL + Power BI + Python,SQL advanced with complex analytics,Power BI dashboards for ops and finance,"Python (pandas, matplotlib) for reporting",No A/B testing,No cloud warehouse,Limited ML exposure,"Solid analyst with SQL, Power BI and Python - good overall fit.","Sundar Krishnamoorthy | Coimbatore | sundar.k@email.com
+
+EXPERIENCE
+Data Analyst - Manufacturing (4 years)
+- SQL advanced: CTEs, window functions, complex reporting
+- Power BI: ops and finance dashboards
+- Python (pandas, matplotlib): automated reports
+
+SKILLS: SQL (advanced), Power BI, Python, Excel
+EDU: B.E. CS - Coimbatore IT 2019"
+Radhika Bhatt,76,Moderate Fit,3 years,Tableau + SQL + Python basics,Tableau intermediate dashboards,SQL solid for BFSI reporting,Python basics learning,Python not production-ready,No A/B testing,No cloud DWH,BFSI analyst with Tableau and SQL - Python development underway.,"Radhika Bhatt | Ahmedabad | radhika.bhatt@email.com
+
+EXPERIENCE
+Data Analyst - BFSI (3 years)
+- Tableau: financial dashboards and KPI reports
+- SQL: complex joins and aggregations
+- Python: learning (pandas basics)
+
+SKILLS: Tableau, SQL, Python (beginner), Excel
+EDU: B.Sc CS - Gujarat Univ 2021"
+Omkar Patil,69,Moderate Fit,2.5 years,SQL + Excel + Tableau basic,SQL solid for operations,Tableau basic dashboards,Excel advanced,No Python,Tableau only basic,No statistical analysis,Operational analyst - SQL strong but missing Python and BI depth.,"Omkar Patil | Nashik | omkar.patil@email.com
+
+EXPERIENCE
+Operations Analyst - Manufacturing (2.5 years)
+- SQL: operations and inventory reporting
+- Tableau basic: 3 basic dashboards built
+- Excel: advanced reporting and MIS
+
+SKILLS: SQL, Excel (advanced), Tableau (basic)
+EDU: B.E. Mechanical - Pune Univ 2021"
+Siddharth Jain,86,Strong Fit,4 years,SQL + Tableau + A/B testing,SQL expert with BigQuery experience,Tableau production dashboards,A/B testing: 20+ experiments with rigour,Python intermediate,No Snowflake,No ML,"Strong analyst with SQL, Tableau and A/B testing experience.","Siddharth Jain | Pune | siddharth.jain@email.com
+
+EXPERIENCE
+Data Analyst - SaaS (4 years)
+- SQL: BigQuery, CTEs, window functions, complex reporting
+- Tableau: 20+ production dashboards
+- A/B testing: 20+ experiments with significance testing
+- Python: intermediate analysis
+
+SKILLS: SQL (expert), BigQuery, Tableau, A/B testing, Python
+EDU: B.Tech CS - COEP Pune 2019"
+Aditi Kulkarni,74,Moderate Fit,3 years,Python + statistics + SQL,"Python (pandas, scipy) for analysis",Strong statistics background,SQL intermediate for data extraction,No BI tool,No A/B testing formally,No cloud warehouse,Statistical analyst with Python - BI tool gap is the main concern.,"Aditi Kulkarni | Nagpur | aditi.kulkarni@email.com
+
+EXPERIENCE
+Data Analyst - Pharma (3 years)
+- Python (pandas, scipy): clinical data analysis
+- Statistics: regression, ANOVA, clinical trials
+- SQL: data extraction and reporting
+
+SKILLS: Python, statistics, SQL (intermediate), Excel
+EDU: M.Sc Statistics - Nagpur Univ 2021"
+Prateek Gupta,45,Not Fit,3 years (HR),HRIS + Excel + recruitment,HRIS system expertise,Excel for HR metrics,Recruitment data management,HR operations not analytics,"No SQL, Python or BI tools",No quantitative analysis,HR operations professional - complete reskilling needed for analytics.,"Prateek Gupta | Chandigarh | prateek.gupta@email.com
+
+EXPERIENCE
+HR Executive - IT Company (3 years)
+- HRIS: employee data management
+- Excel: recruitment tracking
+- Payroll and compliance reporting
+
+SKILLS: HRIS, Excel, recruitment systems
+EDU: MBA HR - Panjab Univ 2021"
+Bhavna Shah,77,Moderate Fit,3.5 years,SQL + Power BI + statistics,SQL advanced with optimisation,Power BI intermediate dashboards,Statistics background from M.Sc,No Python,No A/B testing,No cloud warehouse,Analyst with SQL and BI skills - Python is the missing piece.,"Bhavna Shah | Surat | bhavna.shah@email.com
+
+EXPERIENCE
+Data Analyst - FMCG (3.5 years)
+- SQL: advanced queries, window functions, optimisation
+- Power BI: intermediate dashboards for sales and ops
+- Statistics: regression, hypothesis testing
+
+SKILLS: SQL (advanced), Power BI, statistics, Excel
+EDU: M.Sc Applied Maths - Gujarat Univ 2020"
+Suraj Pandey,32,Not Fit,2 years (Field Sales),Salesforce + Excel,Salesforce CRM field experience,Excel for territory reports,Strong customer relationship skills,"No SQL, Python or BI tools",Field sales not analytics,No quantitative or data skills,Field sales professional - no analytics background for this role.,"Suraj Pandey | Varanasi | suraj.pandey@email.com
+
+EXPERIENCE
+Sales Executive - Pharma (2 years)
+- Salesforce: field sales CRM
+- Excel: territory performance
+- Customer relationship management
+
+SKILLS: Salesforce, Excel (basic), customer relationships
+EDU: B.Pharma - BHU 2022"
+Kaveri Rajan,82,Strong Fit,4 years,Python + Tableau + statistics,Python full analytics stack,Tableau production dashboards,Statistics and A/B testing from product role,SQL intermediate,No cloud DWH,No ML experience,"Product analyst with Python, Tableau and statistics - SQL needs work.","Kaveri Rajan | Bangalore | kaveri.rajan@email.com
+
+EXPERIENCE
+Product Analyst - EdTech (4 years)
+- Python (pandas, statsmodels, seaborn): full analytics stack
+- Tableau: 15 production dashboards
+- A/B testing: 30 experiments
+- Stakeholder communication weekly
+
+SKILLS: Python (advanced), Tableau, SQL (intermediate), A/B testing
+EDU: B.Sc CS - BITS Goa 2019"
+Murali Krishnan,19,Not Fit,7 years (Supply Chain),SAP SCM + Excel + ERP,Deep supply chain domain expertise,SAP SCM: end-to-end implementation,Excel for supply chain planning,Supply chain ops not data analytics,"No SQL analysis, Python or BI tools",ERP ops vs analytics - different function,SCM professional with ERP expertise - wrong function for analytics.,"Murali Krishnan | Chennai | murali.k@email.com
+
+EXPERIENCE
+SCM Manager - Manufacturing (7 years)
+- SAP SCM: procurement, inventory, logistics
+- Excel: supply chain planning
+- ERP implementation support
+
+SKILLS: SAP SCM, Excel, supply chain domain
+EDU: B.E. Industrial Engg - Anna Univ 2016"
+Isha Kapoor,73,Moderate Fit,2.5 years,Power BI + SQL + Python basics,Power BI dashboards for marketing,SQL intermediate for analysis,Python basics with pandas,Python not production-ready,No A/B testing,No cloud warehouse,Marketing analyst building analytics skills - Python development needed.,"Isha Kapoor | Delhi | isha.kapoor@email.com
+
+EXPERIENCE
+Marketing Analyst - D2C (2.5 years)
+- Power BI: marketing performance dashboards
+- SQL: intermediate analysis queries
+- Python (pandas basics): learning
+
+SKILLS: Power BI, SQL (intermediate), Python (beginner)
+EDU: BBA Marketing - Amity 2022"
+Tarun Saxena,79,Moderate Fit,3 years,SQL + Python + statistics,SQL advanced with CTEs mastered,Python pandas and scipy for analysis,Strong statistics from M.Sc,No BI tool,No A/B testing formally,No cloud warehouse,Quantitative analyst with SQL and Python - missing BI tool.,"Tarun Saxena | Lucknow | tarun.saxena@email.com
+
+EXPERIENCE
+Data Analyst - FMCG (3 years)
+- SQL: advanced CTEs, window functions
+- Python (pandas, scipy): statistical analysis
+- Statistics: hypothesis testing, regression
+
+SKILLS: SQL (advanced), Python, statistics, Excel
+EDU: M.Sc Statistics - Lucknow Univ 2021"
+Alpana Mishra,67,Moderate Fit,4 years (Finance),Excel + SQL + financial modelling,Excel expert with financial modelling,SQL intermediate for finance reporting,4 years finance domain experience,No Python,No BI tool,Finance analytics not data analytics,Finance professional with SQL - domain mismatch and missing Python/BI.,"Alpana Mishra | Bhopal | alpana.mishra@email.com
+
+EXPERIENCE
+Finance Analyst - Corporate (4 years)
+- Excel expert: financial models, scenario analysis
+- SQL: finance data extraction and reporting
+- Financial reporting to management
+
+SKILLS: Excel (expert), SQL (intermediate), finance domain
+EDU: MBA Finance - NMIMS 2019"
+Ganesh Subramanian,88,Strong Fit,5 years,SQL + Python + Tableau + A/B testing,SQL CTEs and Snowflake DWH expert,Python full stack and Tableau production,A/B testing framework - 40+ experiments,No Power BI,No scikit-learn ML,No dbt,Highly capable analyst with full technical stack - excellent fit.,"Ganesh Subramanian | Bangalore | ganesh.sub@email.com
+
+EXPERIENCE
+Senior Analyst - Fintech (3 years)
+- SQL: Snowflake, CTEs, window functions, complex joins
+- Python (pandas, seaborn, numpy): full analytics
+- Tableau: production dashboards for 500+ users
+- A/B testing: 40+ experiments, statistical methodology
+
+Data Analyst - E-commerce (2 years)
+- SQL, Python, statistical reporting
+
+SKILLS: SQL (expert), Snowflake, Python, Tableau, A/B testing
+EDU: B.Tech CS - NIT Trichy 2018"
+Payal Chaudhary,48,Not Fit,3 years (Event Mgmt),Excel + project coordination,Event data and logistics tracking,Excel for budget and attendance,Strong coordination skills,"No SQL, Python or BI tools",Events not analytics,No quantitative or data skills,Event manager - no analytics background or technical skills.,"Payal Chaudhary | Jaipur | payal.chaudhary@email.com
+
+EXPERIENCE
+Event Manager - Agency (3 years)
+- Excel: budget tracking, attendance reporting
+- Vendor coordination and logistics
+- Client relationship management
+
+SKILLS: Excel, coordination, communication
+EDU: B.A. Mass Comm - Jaipur Univ 2021"
+Ishaan Mehta,91,Strong Fit,5 years,Python + SQL + Power BI + A/B testing,Python expert with scikit-learn and full analytics stack,Power BI + SQL production combination,A/B testing lead with 50+ experiments,No Tableau,No Snowflake,No dbt,"Strong senior analyst with Python, BI and A/B testing expertise.","Ishaan Mehta | Mumbai | ishaan.mehta@email.com
+
+EXPERIENCE
+Senior Product Analyst - SaaS (3 years)
+- Python (pandas, scikit-learn, statsmodels): expert
+- Power BI: 22 production dashboards
+- A/B testing lead: 50+ experiments, statistical framework
+- SQL: advanced CTEs, window functions
+
+Data Analyst - IT (2 years)
+- Python, SQL, statistical analysis
+
+SKILLS: Python (expert), Power BI, SQL, scikit-learn, A/B testing
+EDU: B.Tech CS - IIT Roorkee 2018"
